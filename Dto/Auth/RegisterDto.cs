@@ -16,7 +16,5 @@ namespace Sever.Dto.Auth
 
         [Required]
         public string LastName { get; set; }
-
-        public IFormFile? ProfilePicture { get; set; }
     }
 }

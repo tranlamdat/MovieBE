@@ -1,73 +1,130 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Sever.Dto;
+using Sever.Dto.Actor;
+using Sever.Exceptions;
 using Sever.Models;
+using Sever.Services.Actors;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Sever.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
+    [Route("api/actor")]
     [ApiController]
     public class ActorController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        public ActorController(ApplicationDbContext context)
+        private readonly IActorService _actorService;
+
+        public ActorController(IActorService actorService)
         {
-            _context = context;
+            _actorService = actorService;
         }
-        // GET: api/<ActorController>
+
         [HttpGet]
-        public ActionResult<IEnumerable<Actor>> Get()//lay tat ca
+        public IActionResult Get() //lay tat ca
         {
-            return _context.Actors.ToList();
+            ResponseDto response = new();
+            try
+            {
+                List<ActorDto> actorDtos = _actorService.GetAllActor();
+                return Ok(actorDtos);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // GET api/<ActorController>/5
         [HttpGet("{id}")]
-        public ActionResult<Actor> Get(int id)// lay theo id
+        public IActionResult Get(int id) // lay theo id
         {
-            return _context.Actors.Find(id);
+            ResponseDto response = new();
+            try
+            {
+                ActorDto actorDto = _actorService.GetActorById(id);
+                return Ok(actorDto);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // POST api/<ActorController>
         [HttpPost]
-        public IActionResult Post([FromBody] Actor obj)// dung' de them du lieu
+        public IActionResult Post([FromBody] CreateActorDto createActorDto) // dung' de them du lieu
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Actors.Add(obj);
-                _context.SaveChanges();
-                return NoContent();
+                return BadRequest(ModelState);
             }
-            return BadRequest();
+
+            ResponseDto response = new();
+            try
+            {
+                ActorDto actorDto = _actorService.AddActor(createActorDto);
+                return Ok(actorDto);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // PUT api/<ActorController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Actor obj)
+        public IActionResult Put(int id, [FromBody] UpdateActorDto updateActorDto)
         {
-            Actor actor = _context.Actors.Find(id);//lay obj dua theo id
-            if (actor == null) { return BadRequest(); }
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                actor.Name = obj.Name;
-                actor.DoB = obj.DoB;
-                actor.Nationality = obj.Nationality;
-                _context.Actors.Update(obj);
-                _context.SaveChanges();
-                return NoContent();
+                return BadRequest(ModelState);
             }
-            return BadRequest();
+
+            ResponseDto response = new();
+            try
+            {
+                ActorDto actorDto = _actorService.UpdateActor(id, updateActorDto);
+                return Ok(actorDto);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // DELETE api/<ActorController>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            Actor actor = _context.Actors.Find(id);
-            if (actor == null) { return BadRequest(); }
-            _context.Actors.Remove(actor);
-            _context.SaveChanges();
-            return NoContent();
+            ResponseDto response = new();
+            try
+            {
+                response.Message = _actorService.DeleteActor(id);
+                return Ok(response);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
     }
 }

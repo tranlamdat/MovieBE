@@ -8,6 +8,9 @@ using System.Text;
 using Sever.Repository.Users;
 using Sever.Repository.Roles;
 using Sever.Services.Auth;
+using Microsoft.OpenApi.Models;
+using Sever.Repository.Actors;
+using Sever.Services.Actors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,10 +31,12 @@ builder.Services.AddSwaggerGen();
 
 // Add dependency for services
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IActorService, ActorService>();
 
 // Add dependency for repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IActorRepository, ActorRepository>();
 
 // Add services to the container.
 builder.Services.AddCors();
@@ -61,6 +66,34 @@ builder.Services
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     });
 
+builder.Services.AddSwaggerGen(option =>
+{
+    option.SwaggerDoc("v1", new OpenApiInfo { Title = "Movie API", Version = "v1" });
+    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Please enter a valid token",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "Bearer"
+    });
+    option.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            new string[]{}
+        }
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -80,6 +113,7 @@ app.UseCors(builder =>
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
