@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Sever.Dto.MovieMedia;
 using Sever.Models;
+using Sever.Services.Cloudinaries;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,9 +13,14 @@ namespace Sever.Controllers
     public class MovieController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public MovieController(ApplicationDbContext context)
+        private readonly IClodinaryService _clodinaryService;
+        private readonly IMapper _mapper;
+
+        public MovieController(ApplicationDbContext context, IClodinaryService clodinaryService, IMapper mapper)
         {
             _context = context;
+            _clodinaryService = clodinaryService;
+            _mapper = mapper;
         }
         // GET: api/<MovieController>
         [HttpGet]
@@ -53,7 +61,6 @@ namespace Sever.Controllers
                 movie.ReleaseDate = obj.ReleaseDate;
                 movie.Description = obj.Description;
                 movie.Duration = obj.Duration;
-                movie.PosterImage = obj.PosterImage;
                 movie.National = obj.National;
                 _context.Movies.Update(obj);
                 _context.SaveChanges();
@@ -71,6 +78,28 @@ namespace Sever.Controllers
             _context.Movies.Remove(movie);
             _context.SaveChanges();
             return NoContent();
+        }
+
+        [HttpPost("add-photo")]
+        public async Task<ActionResult<MovieMediaDto>> AddPhoto(IFormFile formFile, int movieId)
+        {
+            var result = await _clodinaryService.UploadImageAsync(formFile);
+
+            if (result.Error != null) return BadRequest(result.Error.Message);
+
+            var movieMedia = new MovieMedia
+            {
+                Name = result.OriginalFilename,
+                Url = result.SecureUri.AbsoluteUri,
+                PublicId = result.PublicId,
+                Type = Constraints.EFileType.POSTER,
+                MovieId = movieId
+            };
+
+            _context.MoviesMedias.Add(movieMedia);
+            _context.SaveChanges();
+
+            return _mapper.Map<MovieMediaDto>(movieMedia);
         }
     }
 }

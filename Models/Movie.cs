@@ -22,15 +22,6 @@ namespace Sever.Models
         public int Duration { get; set; }
 
         [Required]
-        public string PosterImage { get; set; }
-
-        [Required]
-        public string BannerImage { get; set; }
-
-        [Required]
-        public string MovieUrl { get; set; }
-
-        [Required]
         public string National { get; set; }
 
         [Required]
@@ -47,6 +38,8 @@ namespace Sever.Models
 
         [ForeignKey("DirectorId")]
         public virtual Director? Director { get; set; }
+
+        public virtual ICollection<MovieMedia>? MovieMedias { get; set; }
 
         public virtual ICollection<MovieActor>? MovieActors { get; set; }
 

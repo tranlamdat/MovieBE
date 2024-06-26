@@ -4,6 +4,7 @@ using Sever.Dto.Auth;
 using Sever.Dto.Role;
 using Sever.Dto.User;
 using Sever.Dto.Actor;
+using Sever.Dto.MovieMedia;
 
 namespace Sever.Mapper
 {
@@ -21,6 +22,8 @@ namespace Sever.Mapper
             CreateMap<CreateActorDto, Actor>();
             CreateMap<UpdateActorDto, Actor>();
             CreateMap<Actor, ActorDto>();
+
+            CreateMap<MovieMedia, MovieMediaDto>();
         }
     }
 }

@@ -11,6 +11,7 @@ using Sever.Services.Auth;
 using Microsoft.OpenApi.Models;
 using Sever.Repository.Actors;
 using Sever.Services.Actors;
+using Sever.Services.Cloudinaries;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +33,7 @@ builder.Services.AddSwaggerGen();
 // Add dependency for services
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IActorService, ActorService>();
+builder.Services.AddScoped<IClodinaryService, CloudinaryService>();
 
 // Add dependency for repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();

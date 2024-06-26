@@ -26,7 +26,10 @@
         "JWT_ISSUER": "authenticationserver",
         "JWT_AUDIENCE": "client",
         "JWT_SUBJECT": "accessToken",
-        "JWT_TOKEN_LIFE_TIME": "60"
+        "JWT_TOKEN_LIFE_TIME": "60",
+        "CLOUDINARY_NAME": "dl3zwdtki",
+        "CLOUDINARY_API_KEY": "912549851868169",
+        "CLOUDINARY_API_SECRET": "Qjm-odD8oPDSV31iBaLTlp-VaOo"
       }
     },
     "IIS Express": {
