@@ -1,5 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Sever.Dto.Actor;
+using Sever.Dto;
 using Sever.Models;
+using Sever.Services.Genres;
+using Sever.Dto.Genre;
+using Sever.Exceptions;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Sever.Controllers
@@ -8,64 +13,115 @@ namespace Sever.Controllers
     [ApiController]
     public class GenresController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        public GenresController(ApplicationDbContext context)
+        private readonly IGenreService _genreService;
+        public GenresController(IGenreService genreService)
         {
-            _context = context;
+            _genreService = genreService;
         }
-        // GET: api/<GenresController>
+
         [HttpGet]
-        public ActionResult<IEnumerable<Genre>> Get()//lay tat ca
+        public IActionResult Get()//lay tat ca
         {
-            return _context.Genres.ToList();
+            ResponseDto response = new();
+            try
+            {
+                List<GenreDto> genreDtos = _genreService.GetAllGenre();
+                return Ok(genreDtos);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // GET api/<GenresController>/5
         [HttpGet("{id}")]
-        public ActionResult<Genre> Get(int id)// lay theo id
+        public IActionResult Get(int id)// lay theo id
         {
-            return _context.Genres.Find(id);
+            ResponseDto response = new();
+            try
+            {
+                GenreDto genreDto = _genreService.GetGenreById(id);
+                return Ok(genreDto);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // POST api/<GenresController>
         [HttpPost]
-        public  IActionResult Post([FromBody] Genre obj)// dung' de them du lieu
+        public IActionResult Post([FromBody] CreateGenreDto createGenreDto)// dung' de them du lieu
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Genres.Add(obj);
-                _context.SaveChanges();
-                return NoContent();
+                return BadRequest(ModelState);
             }
-            return BadRequest();
+
+            ResponseDto response = new();
+            try
+            {
+                GenreDto genreDto = _genreService.AddGenre(createGenreDto);
+                return Ok(genreDto);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // PUT api/<GenresController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Genre obj)
+        public IActionResult Put(int id, [FromBody] UpdateGenreDto updateGenreDto)
         {
-            Genre genre = _context.Genres.Find(id);//lay obj dua theo id
-            if (genre == null) { return BadRequest(); }
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-
-                genre.Name = obj.Name;
-                _context.Genres.Update(genre);
-                _context.SaveChanges();
-                return NoContent();
+                return BadRequest(ModelState);
             }
-            return BadRequest();
+
+            ResponseDto response = new();
+            try
+            {
+                GenreDto genreDto = _genreService.UpdateGenre(id, updateGenreDto);
+                return Ok(genreDto);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // DELETE api/<GenresController>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            Genre genre = _context.Genres.Find(id);
-            if(genre == null) { return BadRequest(); }
-            _context.Genres.Remove(genre);
-            _context.SaveChanges();
-            return NoContent();
+            ResponseDto response = new();
+            try
+            {
+                response.Message = _genreService.DeleteGenre(id);
+                return Ok(response);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
     }
 }

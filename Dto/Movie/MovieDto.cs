@@ -1,8 +1,4 @@
-﻿using Sever.Models;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace Sever.Dto.Movie
+﻿namespace Sever.Dto.Movie
 {
     public class MovieDto
     {

@@ -1,35 +1,35 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sever.Models;
 
-namespace Sever.Repository.Actors
+namespace Sever.Repository.Directors
 {
-    public class ActorRepository : IActorRepository
+    public class DirectorRepository : IDirectorRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public ActorRepository(ApplicationDbContext context)
+        public DirectorRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public void CreateActor(Actor actor)
+        public void CreateDirector(Director director)
         {
             try
             {
-                _context.Actors.Add(actor);
+                _context.Directors.Add(director);
                 _context.SaveChanges();
             }
             catch (Exception)
             {
-                throw new Exception("Error creating actor");
+                throw new Exception("Error creating director");
             }
         }
 
-        public void DeleteActor(Actor actor)
+        public void DeleteDirector(Director director)
         {
             try
             {
-                _context.Actors.Remove(actor);
+                _context.Directors.Remove(director);
                 _context.SaveChanges();
             }
             catch (Exception)
@@ -38,25 +38,11 @@ namespace Sever.Repository.Actors
             }
         }
 
-        public Actor GetActorById(int id)
+        public List<Director> GetAllDirector()
         {
             try
             {
-                return _context.Actors
-                    .AsNoTracking()
-                    .FirstOrDefault(u => u.ActorId == id);
-            }
-            catch (Exception)
-            {
-                throw new Exception("Error getting actor");
-            }
-        }
-
-        public List<Actor> GetAllActor()
-        {
-            try
-            {
-                return _context.Actors
+                return _context.Directors
                     .AsNoTracking()
                     .ToList();
             }
@@ -66,16 +52,30 @@ namespace Sever.Repository.Actors
             }
         }
 
-        public void UpdateActor(Actor actor)
+        public Director GetDirectorById(int id)
         {
             try
             {
-                _context.Entry<Actor>(actor).State = EntityState.Modified;
+                return _context.Directors
+                    .AsNoTracking()
+                    .FirstOrDefault(u => u.DirectorId == id);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error getting director");
+            }
+        }
+
+        public void UpdateDirector(Director director)
+        {
+            try
+            {
+                _context.Entry<Director>(director).State = EntityState.Modified;
                 _context.SaveChanges();
             }
             catch (Exception)
             {
-                throw new Exception("Error updating actor");
+                throw new Exception("Error updating director");
             }
         }
     }

@@ -18,7 +18,7 @@ namespace Sever.Services.Cloudinaries
             _cloudinary = new Cloudinary(account);
         }
 
-        public async Task<ImageUploadResult> UploadImageAsync(IFormFile file)
+        public async Task<ImageUploadResult> UploadImageAsync(IFormFile file, string folderName)
         {
             var uploadResult = new ImageUploadResult();
 
@@ -28,7 +28,8 @@ namespace Sever.Services.Cloudinaries
                 {
                     var uploadParams = new ImageUploadParams()
                     {
-                        File = new FileDescription(file.FileName, stream)
+                        File = new FileDescription(file.FileName, stream),
+                        Folder = folderName
                     };
 
                     uploadResult = await _cloudinary.UploadAsync(uploadParams);
@@ -38,7 +39,28 @@ namespace Sever.Services.Cloudinaries
             return uploadResult;
         }
 
-        public async Task<DeletionResult> DeleteImageAsync(string publicId)
+        public async Task<VideoUploadResult> UploadVideoAsync(IFormFile file, string folderName)
+        {
+            var uploadResult = new VideoUploadResult();
+
+            if (file.Length > 0)
+            {
+                using (var stream = file.OpenReadStream())
+                {
+                    var uploadParams = new VideoUploadParams()
+                    {
+                        File = new FileDescription(file.FileName, stream),
+                        Folder = folderName
+                    };
+
+                    uploadResult = await _cloudinary.UploadAsync(uploadParams);
+                }
+            }
+
+            return uploadResult;
+        }
+
+        public async Task<DeletionResult> DeleteMediaAsync(string publicId)
         {
             var deleteParams = new DeletionParams(publicId);
             var result = await _cloudinary.DestroyAsync(deleteParams);

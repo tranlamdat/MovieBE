@@ -1,5 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Sever.Dto.Actor;
+using Sever.Dto;
 using Sever.Models;
+using Sever.Services.Actors;
+using Sever.Services.Directors;
+using Sever.Dto.Director;
+using Sever.Exceptions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,65 +15,116 @@ namespace Sever.Controllers
     [ApiController]
     public class DirectorController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        public DirectorController(ApplicationDbContext context)
+        private readonly IDirectorService _directorService;
+
+        public DirectorController(IDirectorService directorService)
         {
-            _context = context;
+            _directorService = directorService;
         }
-        // GET: api/<DirectorController>
+
         [HttpGet]
-        public ActionResult<IEnumerable<Director>> Get()//lay tat ca
+        public IActionResult Get()//lay tat ca
         {
-            return _context.Directors.ToList();
+            ResponseDto response = new();
+            try
+            {
+                List<DirectorDto> directorDtos = _directorService.GetAllDirector();
+                return Ok(directorDtos);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // GET api/<DirectorController>/5
         [HttpGet("{id}")]
-        public ActionResult<Director> Get(int id)// lay theo id
+        public IActionResult Get(int id)// lay theo id
         {
-            return _context.Directors.Find(id);
+            ResponseDto response = new();
+            try
+            {
+                DirectorDto directorDto = _directorService.GetDirectorById(id);
+                return Ok(directorDto);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // POST api/<DirectorController>
         [HttpPost]
-        public IActionResult Post([FromBody] Director obj)// dung' de them du lieu
+        public IActionResult Post([FromBody] CreateDirectorDto createDirectorDto)// dung' de them du lieu
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Directors.Add(obj);
-                _context.SaveChanges();
-                return NoContent();
+                return BadRequest(ModelState);
             }
-            return BadRequest();
+
+            ResponseDto response = new();
+            try
+            {
+                DirectorDto directorDto = _directorService.AddDirector(createDirectorDto);
+                return Ok(directorDto);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // PUT api/<DirectorController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Director obj)
+        public IActionResult Put(int id, [FromBody] UpdateDirectorDto updateDirectorDto)
         {
-            Director director = _context.Directors.Find(id);//lay obj dua theo id
-            if (director == null) { return BadRequest(); }
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                director.Name = obj.Name;
-                director.DoB = obj.DoB;
-                director.Nationality = obj.Nationality;
-                _context.Directors.Update(obj);
-                _context.SaveChanges();
-                return NoContent();
+                return BadRequest(ModelState);
             }
-            return BadRequest();
+
+            ResponseDto response = new();
+            try
+            {
+                DirectorDto directorDto = _directorService.UpdateDirector(id, updateDirectorDto);
+                return Ok(directorDto);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // DELETE api/<DirectorController>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            Director director = _context.Directors.Find(id);
-            if (director == null) { return BadRequest(); }
-            _context.Directors.Remove(director);
-            _context.SaveChanges();
-            return NoContent();
+            ResponseDto response = new();
+            try
+            {
+                response.Message = _directorService.DeleteDirector(id);
+                return Ok(response);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
     }
 }

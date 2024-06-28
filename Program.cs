@@ -12,6 +12,10 @@ using Microsoft.OpenApi.Models;
 using Sever.Repository.Actors;
 using Sever.Services.Actors;
 using Sever.Services.Cloudinaries;
+using Sever.Services.Genres;
+using Sever.Repository.Genres;
+using Sever.Services.Directors;
+using Sever.Repository.Directors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,11 +38,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IActorService, ActorService>();
 builder.Services.AddScoped<IClodinaryService, CloudinaryService>();
+builder.Services.AddScoped<IGenreService, GenreService>();
+builder.Services.AddScoped<IDirectorService, DirectorService>();
 
 // Add dependency for repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IActorRepository, ActorRepository>();
+builder.Services.AddScoped<IGenreRepository, GenreRepository>();
+builder.Services.AddScoped<IDirectorRepository, DirectorRepository>();
 
 // Add services to the container.
 builder.Services.AddCors();

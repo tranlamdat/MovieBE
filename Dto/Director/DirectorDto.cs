@@ -1,8 +1,8 @@
-﻿namespace Sever.Dto.Actor
+﻿namespace Sever.Dto.Director
 {
-    public class ActorDto
+    public class DirectorDto
     {
-        public int ActorId { get; set; }
+        public int DirectorId { get; set; }
 
         public string Name { get; set; }
 

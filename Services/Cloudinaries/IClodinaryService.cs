@@ -4,8 +4,10 @@ namespace Sever.Services.Cloudinaries
 {
     public interface IClodinaryService
     {
-        Task<ImageUploadResult> UploadImageAsync(IFormFile file);
+        Task<ImageUploadResult> UploadImageAsync(IFormFile file, string folderName);
 
-        Task<DeletionResult> DeleteImageAsync(string publicId);
+        Task<VideoUploadResult> UploadVideoAsync(IFormFile file, string folderName);
+
+        Task<DeletionResult> DeleteMediaAsync(string publicId);
     }
 }
