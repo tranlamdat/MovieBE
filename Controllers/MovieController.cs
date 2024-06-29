@@ -9,11 +9,13 @@ using Sever.Services.Cloudinaries;
 using Sever.Services.Movies;
 using Sever.Dto.Movie;
 using Sever.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Sever.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("api/movies")]
     [ApiController]
     public class MovieController : ControllerBase

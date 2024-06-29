@@ -66,7 +66,7 @@ namespace Sever.Repository.Movies
             }
             catch (Exception)
             {
-                throw new Exception("Error getting actor");
+                throw new Exception("Error getting movie");
             }
         }
 

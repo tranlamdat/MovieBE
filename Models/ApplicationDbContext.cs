@@ -44,8 +44,14 @@ namespace Sever.Models
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<MovieActor>().HasKey(m => new { m.MovieId, m.ActorId });
-            modelBuilder.Entity<WatchList>().HasKey(m => new { m.MovieId, m.UserId });
+            /*modelBuilder.Entity<Feedback>()
+                .HasOne(u => u.User)
+                .WithMany(fb => fb.Feedbacks)
+                .HasForeignKey(u => u.UserId)
+                .OnDelete(DeleteBehavior.Restrict);*/
+
+            /*modelBuilder.Entity<MovieActor>().HasKey(m => new { m.MovieId, m.ActorId });
+            modelBuilder.Entity<WatchList>().HasKey(m => new { m.MovieId, m.UserId });*/
 
             // Seed Roles
             modelBuilder.Entity<Role>().HasData(

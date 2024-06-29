@@ -5,6 +5,10 @@ namespace Sever.Models
 {
     public class MovieActor : Base
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int MovieActorId { get; set; }
+
         public int MovieId { get; set; }
 
         public int ActorId { get; set; }

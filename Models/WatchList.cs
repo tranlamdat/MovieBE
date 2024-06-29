@@ -5,6 +5,10 @@ namespace Sever.Models
 {
     public class WatchList : Base
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int WatchListId { get; set; }
+
         public int UserId { get; set; }
 
         public int MovieId { get; set; }
