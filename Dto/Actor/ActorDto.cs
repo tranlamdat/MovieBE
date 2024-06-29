@@ -1,6 +1,6 @@
 ﻿namespace Sever.Dto.Actor
 {
-    public class ActorDto
+    public class ActorDto : BaseDto
     {
         public int ActorId { get; set; }
 

@@ -5,7 +5,7 @@ using Sever.Dto.Role;
 
 namespace Sever.Dto.User
 {
-    public class UserDto
+    public class UserDto : BaseDto
     {
         public int UserId { get; set; }
         public string Email { get; set; }

@@ -1,6 +1,9 @@
-﻿namespace Sever.Dto.Movie
+﻿using Sever.Dto.Director;
+using Sever.Dto.Genre;
+
+namespace Sever.Dto.Movie
 {
-    public class MovieDto
+    public class MovieDto : BaseDto
     {
         public int MovieId { get; set; }
 
@@ -14,10 +17,10 @@
 
         public string National { get; set; }
 
-        public int NumberOfView { get; set; } = 0;
+        public int NumberOfView { get; set; }
 
-        public int GenreId { get; set; }
+        public GenreDto? Genre { get; set; }
 
-        public int DirectorId { get; set; }
+        public DirectorDto? Director { get; set; }
     }
 }

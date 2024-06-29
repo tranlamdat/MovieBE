@@ -1,6 +1,6 @@
 ﻿namespace Sever.Dto.Genre
 {
-    public class GenreDto
+    public class GenreDto : BaseDto
     {
         public int GenreId { get; set; }
 

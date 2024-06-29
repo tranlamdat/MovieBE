@@ -5,11 +5,13 @@ using Sever.Models;
 using Sever.Services.Genres;
 using Sever.Dto.Genre;
 using Sever.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Sever.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
+    [Route("api/genres")]
     [ApiController]
     public class GenresController : ControllerBase
     {

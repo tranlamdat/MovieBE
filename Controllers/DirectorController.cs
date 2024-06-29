@@ -6,12 +6,14 @@ using Sever.Services.Actors;
 using Sever.Services.Directors;
 using Sever.Dto.Director;
 using Sever.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Sever.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
+    [Route("api/directors")]
     [ApiController]
     public class DirectorController : ControllerBase
     {

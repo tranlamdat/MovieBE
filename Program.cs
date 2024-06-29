@@ -16,6 +16,8 @@ using Sever.Services.Genres;
 using Sever.Repository.Genres;
 using Sever.Services.Directors;
 using Sever.Repository.Directors;
+using Sever.Services.Movies;
+using Sever.Repository.Movies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +42,7 @@ builder.Services.AddScoped<IActorService, ActorService>();
 builder.Services.AddScoped<IClodinaryService, CloudinaryService>();
 builder.Services.AddScoped<IGenreService, GenreService>();
 builder.Services.AddScoped<IDirectorService, DirectorService>();
+builder.Services.AddScoped<IMovieService, MovieService>();
 
 // Add dependency for repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -47,6 +50,7 @@ builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IActorRepository, ActorRepository>();
 builder.Services.AddScoped<IGenreRepository, GenreRepository>();
 builder.Services.AddScoped<IDirectorRepository, DirectorRepository>();
+builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 
 // Add services to the container.
 builder.Services.AddCors();

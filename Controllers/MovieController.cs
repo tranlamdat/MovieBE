@@ -1,86 +1,136 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Sever.Dto.Actor;
+using Sever.Dto;
 using Sever.Dto.MovieMedia;
 using Sever.Models;
+using Sever.Services.Actors;
 using Sever.Services.Cloudinaries;
+using Sever.Services.Movies;
+using Sever.Dto.Movie;
+using Sever.Exceptions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Sever.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/movies")]
     [ApiController]
     public class MovieController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IClodinaryService _clodinaryService;
-        private readonly IMapper _mapper;
+        private readonly IMovieService _movieService;
 
-        public MovieController(ApplicationDbContext context, IClodinaryService clodinaryService, IMapper mapper)
+        public MovieController(IMovieService movieService)
         {
-            _context = context;
-            _clodinaryService = clodinaryService;
-            _mapper = mapper;
+            _movieService = movieService;
         }
-        // GET: api/<MovieController>
+
         [HttpGet]
-        public ActionResult<IEnumerable<Movie>> Get()//lay tat ca
+        public IActionResult Get()//lay tat ca
         {
-            return _context.Movies.ToList();
+            ResponseDto response = new();
+            try
+            {
+                List<MovieDto> movieDtos = _movieService.GetAllMovie();
+                return Ok(movieDtos);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // GET api/<MovieController>/5
         [HttpGet("{id}")]
-        public ActionResult<Movie> Get(int id)// lay theo id
+        public IActionResult Get(int id)// lay theo id
         {
-            return _context.Movies.Find(id);
+            ResponseDto response = new();
+            try
+            {
+                MovieDto movieDto = _movieService.GetMovieById(id);
+                return Ok(movieDto);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // POST api/<MovieController>
         [HttpPost]
-        public IActionResult Post([FromBody] Movie obj)// dung' de them du lieu
+        public IActionResult Post([FromBody] CreateMovieDto createMovieDto)// dung' de them du lieu
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Movies.Add(obj);
-                _context.SaveChanges();
-                return NoContent();
+                return BadRequest(ModelState);
             }
-            return BadRequest();
+
+            ResponseDto response = new();
+            try
+            {
+                MovieDto movieDto = _movieService.AddMovie(createMovieDto);
+                return Ok(movieDto);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // PUT api/<MovieController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Movie obj)
+        public IActionResult Put(int id, [FromBody] UpdateMovieDto updateMovieDto)
         {
-            Movie movie = _context.Movies.Find(id);//lay obj dua theo id
-            if (movie == null) { return BadRequest(); }
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                movie.Title = obj.Title;
-                movie.ReleaseDate = obj.ReleaseDate;
-                movie.Description = obj.Description;
-                movie.Duration = obj.Duration;
-                movie.National = obj.National;
-                _context.Movies.Update(obj);
-                _context.SaveChanges();
-                return NoContent();
+                return BadRequest(ModelState);
             }
-            return BadRequest();
-        }
 
-        // DELETE api/<MovieController>/5
+            ResponseDto response = new();
+            try
+            {
+                MovieDto movieDto = _movieService.UpdateMovie(id, updateMovieDto);
+                return Ok(movieDto);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+        }
+        
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            Movie movie = _context.Movies.Find(id);
-            if (movie == null) { return BadRequest(); }
-            _context.Movies.Remove(movie);
-            _context.SaveChanges();
-            return NoContent();
+            ResponseDto response = new();
+            try
+            {
+                response.Message = _movieService.DeleteMovie(id);
+                return Ok(response);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        [HttpPost("add-photo")]
+        /*[HttpPost("add-photo")]
         public async Task<ActionResult<MovieMediaDto>> AddPhoto(IFormFile formFile, int movieId)
         {
             var result = await _clodinaryService.UploadImageAsync(formFile, "image");
@@ -122,7 +172,7 @@ namespace Sever.Controllers
             _context.SaveChanges();
 
             return _mapper.Map<MovieMediaDto>(movieMedia);
-        }
+        }*/
     }
 }
 

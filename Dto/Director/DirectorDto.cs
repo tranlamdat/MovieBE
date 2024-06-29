@@ -1,6 +1,6 @@
 ﻿namespace Sever.Dto.Director
 {
-    public class DirectorDto
+    public class DirectorDto : BaseDto
     {
         public int DirectorId { get; set; }
 
