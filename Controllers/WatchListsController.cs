@@ -7,10 +7,10 @@ namespace Sever.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class WatchListController : ControllerBase
+    public class WatchListsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public WatchListController(ApplicationDbContext context)
+        public WatchListsController(ApplicationDbContext context)
         {
             _context = context;
         }

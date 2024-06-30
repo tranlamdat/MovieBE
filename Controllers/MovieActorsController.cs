@@ -13,11 +13,11 @@ namespace Sever.Controllers
 {
     [Route("api/movie-actors")]
     [ApiController]
-    public class MovieActorController : ControllerBase
+    public class MovieActorsController : ControllerBase
     {
         private readonly IMovieActorService _movieActorService;
 
-        public MovieActorController(IMovieActorService movieActorService)
+        public MovieActorsController(IMovieActorService movieActorService)
         {
             _movieActorService = movieActorService;
         }

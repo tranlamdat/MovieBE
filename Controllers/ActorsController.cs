@@ -1,37 +1,35 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Sever.Dto.Actor;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Sever.Dto;
+using Sever.Dto.Actor;
+using Sever.Exceptions;
 using Sever.Models;
 using Sever.Services.Actors;
-using Sever.Services.Directors;
-using Sever.Dto.Director;
-using Sever.Exceptions;
-using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Sever.Controllers
 {
     [Authorize(Roles = "Admin")]
-    [Route("api/directors")]
+    [Route("api/actors")]
     [ApiController]
-    public class DirectorController : ControllerBase
+    public class ActorsController : ControllerBase
     {
-        private readonly IDirectorService _directorService;
+        private readonly IActorService _actorService;
 
-        public DirectorController(IDirectorService directorService)
+        public ActorsController(IActorService actorService)
         {
-            _directorService = directorService;
+            _actorService = actorService;
         }
 
         [HttpGet]
-        public IActionResult Get()//lay tat ca
+        public IActionResult Get() //lay tat ca
         {
             ResponseDto response = new();
             try
             {
-                List<DirectorDto> directorDtos = _directorService.GetAllDirector();
-                return Ok(directorDtos);
+                List<ActorDto> actorDtos = _actorService.GetAllActor();
+                return Ok(actorDtos);
             }
             catch (Exception e)
             {
@@ -41,13 +39,13 @@ namespace Sever.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id)// lay theo id
+        public IActionResult Get(int id) // lay theo id
         {
             ResponseDto response = new();
             try
             {
-                DirectorDto directorDto = _directorService.GetDirectorById(id);
-                return Ok(directorDto);
+                ActorDto actorDto = _actorService.GetActorById(id);
+                return Ok(actorDto);
             }
             catch (NotFoundException e)
             {
@@ -62,7 +60,7 @@ namespace Sever.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] CreateDirectorDto createDirectorDto)// dung' de them du lieu
+        public IActionResult Post([FromBody] CreateActorDto createActorDto) // dung' de them du lieu
         {
             if (!ModelState.IsValid)
             {
@@ -72,8 +70,8 @@ namespace Sever.Controllers
             ResponseDto response = new();
             try
             {
-                DirectorDto directorDto = _directorService.AddDirector(createDirectorDto);
-                return Ok(directorDto);
+                ActorDto actorDto = _actorService.AddActor(createActorDto);
+                return Ok(actorDto);
             }
             catch (Exception e)
             {
@@ -83,7 +81,7 @@ namespace Sever.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] UpdateDirectorDto updateDirectorDto)
+        public IActionResult Put(int id, [FromBody] UpdateActorDto updateActorDto)
         {
             if (!ModelState.IsValid)
             {
@@ -93,8 +91,8 @@ namespace Sever.Controllers
             ResponseDto response = new();
             try
             {
-                DirectorDto directorDto = _directorService.UpdateDirector(id, updateDirectorDto);
-                return Ok(directorDto);
+                ActorDto actorDto = _actorService.UpdateActor(id, updateActorDto);
+                return Ok(actorDto);
             }
             catch (NotFoundException e)
             {
@@ -114,7 +112,7 @@ namespace Sever.Controllers
             ResponseDto response = new();
             try
             {
-                response.Message = _directorService.DeleteDirector(id);
+                response.Message = _actorService.DeleteActor(id);
                 return Ok(response);
             }
             catch (NotFoundException e)
@@ -130,3 +128,4 @@ namespace Sever.Controllers
         }
     }
 }
+

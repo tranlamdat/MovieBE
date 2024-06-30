@@ -18,11 +18,11 @@ namespace Sever.Controllers
     [Authorize(Roles = "Admin")]
     [Route("api/movies")]
     [ApiController]
-    public class MovieController : ControllerBase
+    public class MoviesController : ControllerBase
     {
         private readonly IMovieService _movieService;
 
-        public MovieController(IMovieService movieService)
+        public MoviesController(IMovieService movieService)
         {
             _movieService = movieService;
         }
@@ -131,50 +131,6 @@ namespace Sever.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
         }
-
-        /*[HttpPost("add-photo")]
-        public async Task<ActionResult<MovieMediaDto>> AddPhoto(IFormFile formFile, int movieId)
-        {
-            var result = await _clodinaryService.UploadImageAsync(formFile, "image");
-
-            if (result.Error != null) return BadRequest(result.Error.Message);
-
-            var movieMedia = new MovieMedia
-            {
-                Name = result.OriginalFilename,
-                Url = result.SecureUri.AbsoluteUri,
-                PublicId = result.PublicId,
-                Type = Constraints.EFileType.POSTER,
-                MovieId = movieId
-            };
-
-            _context.MoviesMedias.Add(movieMedia);
-            _context.SaveChanges();
-
-            return _mapper.Map<MovieMediaDto>(movieMedia);
-        }
-
-        [HttpPost("add-video")]
-        public async Task<ActionResult<MovieMediaDto>> AddVideo(IFormFile formFile, int movieId)
-        {
-            var result = await _clodinaryService.UploadVideoAsync(formFile, "video");
-
-            if (result.Error != null) return BadRequest(result.Error.Message);
-
-            var movieMedia = new MovieMedia
-            {
-                Name = result.OriginalFilename,
-                Url = result.SecureUri.AbsoluteUri,
-                PublicId = result.PublicId,
-                Type = Constraints.EFileType.VIDEO,
-                MovieId = movieId
-            };
-
-            _context.MoviesMedias.Add(movieMedia);
-            _context.SaveChanges();
-
-            return _mapper.Map<MovieMediaDto>(movieMedia);
-        }*/
     }
 }
 
