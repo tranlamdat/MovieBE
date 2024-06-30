@@ -1,93 +1,138 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Sever.Dto.Actor;
+using Sever.Dto;
 using Sever.Models;
+using Sever.Services.Actors;
+using Sever.Services.Users;
+using Sever.Dto.User;
+using Sever.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Sever.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
+    [Route("api/users")]
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUserService _userService;
 
-        public UsersController(ApplicationDbContext context)
+        public UsersController(IUserService userService)
         {
-            _context = context;
+            _userService = userService;
         }
-        // GET: api/<UserController>
+
         [HttpGet]
-        public ActionResult<IEnumerable<User>> Get()//lay tat ca
+        public IActionResult Get()//lay tat ca
         {
-            List<User> user = _context.Users.ToList();
-
-            if (user.Count == 0 || user[0].UserId <= 0)
+            ResponseDto response = new();
+            try
             {
-                return NotFound();
+                List<UserDto> userDtos = _userService.GetAllUser();
+                return Ok(userDtos);
             }
-            else
+            catch (Exception e)
             {
-                return user;
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
         }
 
-        // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public ActionResult<User> Get(int id)// lay theo id
+        public IActionResult Get(int id)// lay theo id
         {
-            User user = _context.Users.Find(id); 
-
-            if (user == null) { return NotFound();}
-            else { return user; }
+            ResponseDto response = new();
+            try
+            {
+                UserDto userDto = _userService.GetUserById(id);
+                return Ok(userDto);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // POST api/<UserController>
         [HttpPost]
-        public IActionResult Post([FromBody] User objUser)// dung' de them du lieu
+        public IActionResult Post([FromBody] CreateUserDto createUserDto)// dung' de them du lieu
         {
-            if (objUser == null)
+            if (!ModelState.IsValid)
             {
-                return BadRequest("User data is null.");
+                return BadRequest(ModelState);
             }
 
-            if (ModelState.IsValid)
+            ResponseDto response = new();
+            try
             {
-                _context.Users.Add(objUser);
-                _context.SaveChanges();
-                return Ok();
+                UserDto userDto = _userService.CreateUser(createUserDto);
+                return Ok(userDto);
             }
-
-            return BadRequest();
+            catch (ConflictException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status409Conflict, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] User objUser)
+        public IActionResult Put(int id, [FromBody] UpdateUserDto updateUserDto)
         {
-            User foundUser = _context.Users.Find(id); //lay obj dua theo id
-
-            if (foundUser == null) { return BadRequest(); }
-            if (ModelState.IsValid)
-            {                
-                _context.Users.Update(objUser);
-                _context.SaveChanges();
-                return Ok();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
             }
 
-            return BadRequest();
+            ResponseDto response = new();
+            try
+            {
+                UserDto userDto = _userService.UpdateUser(id, updateUserDto);
+                return Ok(userDto);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
-        // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            User user = _context.Users.Find(id);
-            if (user == null) { return NotFound(); }
-
-            _context.Users.Remove(user);
-            _context.SaveChanges();
-            return Ok();
+            ResponseDto response = new();
+            try
+            {
+                response.Message = _userService.DeleteUser(id);
+                return Ok(response);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
     }
 }

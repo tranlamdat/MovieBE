@@ -45,6 +45,8 @@ namespace Sever.Repository.Movies
                 return _context.Movies
                     .Include(m => m.Genre)
                     .Include(m => m.Director)
+                    .Include(m => m.MovieActors)
+                    .Include(m => m.MovieMedias)
                     .AsNoTracking()
                     .ToList();
             }
@@ -61,6 +63,8 @@ namespace Sever.Repository.Movies
                 return _context.Movies
                     .Include(m => m.Genre)
                     .Include(m => m.Director)
+                    .Include(m => m.MovieActors).ThenInclude(ma => ma.Actor)
+                    .Include(m => m.MovieMedias)
                     .AsNoTracking()
                     .FirstOrDefault(u => u.MovieId == id);
             }

@@ -1,5 +1,7 @@
 ﻿using Sever.Dto.Director;
 using Sever.Dto.Genre;
+using Sever.Dto.MovieActor;
+using Sever.Dto.MovieMedia;
 
 namespace Sever.Dto.Movie
 {
@@ -22,5 +24,9 @@ namespace Sever.Dto.Movie
         public GenreDto? Genre { get; set; }
 
         public DirectorDto? Director { get; set; }
+
+        public ICollection<MovieMediaDto>? MovieMedias { get; set; }
+
+        public ICollection<MovieActorDto>? MovieActors { get; set; }
     }
 }

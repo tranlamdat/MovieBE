@@ -2,7 +2,7 @@
 
 namespace Sever.Dto.Actor
 {
-    public class CreateActorDto
+    public class CreateActorDto : BaseDto
     {
         [Required]
         public string Name { get; set; }

@@ -2,8 +2,8 @@
 {
     public class BaseDto
     {
-        public DateTime DateCreated { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.Now;
 
-        public DateTime DateUpdated { get; set; }
+        public DateTime DateUpdated { get; set; } = DateTime.Now;
     }
 }

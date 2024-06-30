@@ -22,6 +22,7 @@ using Sever.Services.MovieActors;
 using Sever.Repository.MovieActors;
 using Sever.Services.MovieMedias;
 using Sever.Repository.MovieMedias;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -115,6 +116,8 @@ builder.Services.AddSwaggerGen(option =>
         }
     });
 });
+
+builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 var app = builder.Build();
 

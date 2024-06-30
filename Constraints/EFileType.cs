@@ -5,6 +5,7 @@
         POSTER,
         BANNER,
         TRAILER,
+        PROFILE,
         VIDEO
     }
 }

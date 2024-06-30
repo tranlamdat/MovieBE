@@ -6,11 +6,13 @@ using Sever.Services.MovieActors;
 using Sever.Services.Movies;
 using Sever.Dto.MovieActor;
 using Sever.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Sever.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("api/movie-actors")]
     [ApiController]
     public class MovieActorsController : ControllerBase

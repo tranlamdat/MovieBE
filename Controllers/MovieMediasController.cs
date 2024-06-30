@@ -8,6 +8,7 @@ using Sever.Services.MovieMedias;
 
 namespace Sever.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("api/movie-medias")]
     [ApiController]
     public class MovieMediasController : ControllerBase

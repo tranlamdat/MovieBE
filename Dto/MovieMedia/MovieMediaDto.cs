@@ -13,8 +13,6 @@ namespace Sever.Dto.MovieMedia
 
         public string PublicId { get; set; }
 
-        public EFileType Type { get; set; }
-
-        public MovieDto? Movie { get; set; }
+        public string Type { get; set; }
     }
 }
