@@ -11,5 +11,11 @@ namespace Sever.Dto.Director
 
         [Required]
         public string Nationality { get; set; }
+
+        public string? AvatarUrl { get; set; }
+
+        public string? PublicId { get; set; }
+
+        public IFormFile? NewAvatar { get; set; }
     }
 }

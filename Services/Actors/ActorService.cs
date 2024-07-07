@@ -1,8 +1,13 @@
 ﻿using AutoMapper;
+using CloudinaryDotNet.Actions;
+using Sever.Constraints;
 using Sever.Dto.Actor;
+using Sever.Dto.MovieMedia;
+using Sever.Dto.User;
 using Sever.Exceptions;
 using Sever.Models;
 using Sever.Repository.Actors;
+using Sever.Services.Cloudinaries;
 
 namespace Sever.Services.Actors
 {
@@ -10,16 +15,29 @@ namespace Sever.Services.Actors
     {
         private readonly IMapper _mapper;
         private readonly IActorRepository _actorRepository;
+        private readonly IClodinaryService _clodinaryService;
 
-        public ActorService(IMapper mapper, IActorRepository actorRepository)
+        public ActorService(IMapper mapper, IActorRepository actorRepository, IClodinaryService clodinaryService)
         {
             _mapper = mapper;
             _actorRepository = actorRepository;
+            _clodinaryService = clodinaryService;
         }
 
-        public ActorDto AddActor(CreateActorDto createActorDto)
+        public async Task<ActorDto> AddActor(CreateActorDto createActorDto)
         {
             Actor actor = _mapper.Map<Actor>(createActorDto);
+
+            // Save profile picture
+            if (createActorDto.NewAvatar != null)
+            {
+                var result = await _clodinaryService.UploadImageAsync(createActorDto.NewAvatar, EFileType.ACTOR.ToString());
+                if (result.Error != null) throw new InvalidException(result.Error.Message);
+
+                actor.AvatarUrl = result.SecureUri.AbsoluteUri;
+                actor.PublicId = result.PublicId;
+            }
+
             _actorRepository.CreateActor(actor);
 
             return _mapper.Map<ActorDto>(actor);
@@ -45,13 +63,28 @@ namespace Sever.Services.Actors
             return _mapper.Map<List<ActorDto>>(actors);
         }
 
-        public ActorDto UpdateActor(int id, UpdateActorDto updateActorDto)
+        public async Task<ActorDto> UpdateActor(int id, UpdateActorDto updateActorDto)
         {
-            _ = _actorRepository.GetActorById(id) ?? throw new NotFoundException("Actor does not exists");
+            Actor actor = _actorRepository.GetActorById(id) ?? throw new NotFoundException("Actor does not exists");
 
             updateActorDto.ActorId = id;
+            actor = _mapper.Map<Actor>(updateActorDto);
 
-            Actor actor = _mapper.Map<Actor>(updateActorDto);
+            // Save profile picture
+            if (updateActorDto.NewAvatar != null)
+            {
+                var result = await _clodinaryService.UploadImageAsync(updateActorDto.NewAvatar, EFileType.ACTOR.ToString());
+                if (result.Error != null) throw new InvalidException(result.Error.Message);
+
+                actor.AvatarUrl = result.SecureUri.AbsoluteUri;
+                actor.PublicId = result.PublicId;
+
+                if (updateActorDto.PublicId != null && updateActorDto.PublicId != "")
+                {
+                    await _clodinaryService.DeleteMediaAsync(updateActorDto.PublicId);
+                }
+            }
+
             _actorRepository.UpdateActor(actor);
 
             return _mapper.Map<ActorDto>(actor);

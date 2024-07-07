@@ -27,12 +27,12 @@ using System.Text.Json.Serialization;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var dbHost = Environment.GetEnvironmentVariable("DB_HOST") ?? "localhost";
-var dbName = Environment.GetEnvironmentVariable("DB_NAME") ?? "default_db";
+var dbHost = Environment.GetEnvironmentVariable("DB_HOST") ?? "DESKTOP-I87AK8B\\LAMDAT";
+var dbName = Environment.GetEnvironmentVariable("DB_NAME") ?? "MovieProject";
 var dbUser = Environment.GetEnvironmentVariable("DB_USER") ?? "sa";
-var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "password";
-var dbTrust = Environment.GetEnvironmentVariable("DB_TRUST_SERVER_CERTIFICATE") == "true";
-var connectionString = $"Server={dbHost};Database={dbName};uid={dbUser};pwd={dbPassword};TrustServerCertificate={dbTrust}";
+var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "lamdat123";
+//var dbTrust = Environment.GetEnvironmentVariable("DB_TRUST_SERVER_CERTIFICATE") == "true";
+var connectionString = $"Server={dbHost};Database={dbName};uid={dbUser};pwd={dbPassword};TrustServerCertificate={true}";
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddControllers();

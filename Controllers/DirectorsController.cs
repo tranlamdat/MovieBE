@@ -62,7 +62,7 @@ namespace Sever.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] CreateDirectorDto createDirectorDto)// dung' de them du lieu
+        public async Task<IActionResult> Post([FromForm] CreateDirectorDto createDirectorDto)// dung' de them du lieu
         {
             if (!ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace Sever.Controllers
             ResponseDto response = new();
             try
             {
-                DirectorDto directorDto = _directorService.AddDirector(createDirectorDto);
+                DirectorDto directorDto = await _directorService.AddDirector(createDirectorDto);
                 return Ok(directorDto);
             }
             catch (Exception e)
@@ -83,7 +83,7 @@ namespace Sever.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] UpdateDirectorDto updateDirectorDto)
+        public async Task<IActionResult> Put(int id, [FromForm] UpdateDirectorDto updateDirectorDto)
         {
             if (!ModelState.IsValid)
             {
@@ -93,7 +93,7 @@ namespace Sever.Controllers
             ResponseDto response = new();
             try
             {
-                DirectorDto directorDto = _directorService.UpdateDirector(id, updateDirectorDto);
+                DirectorDto directorDto = await _directorService.UpdateDirector(id, updateDirectorDto);
                 return Ok(directorDto);
             }
             catch (NotFoundException e)

@@ -5,8 +5,8 @@ namespace Sever.Services.Directors
 {
     public interface IDirectorService
     {
-        DirectorDto AddDirector(CreateDirectorDto createDirectorDto);
-        DirectorDto UpdateDirector(int id, UpdateDirectorDto updateDirectorDto);
+        Task<DirectorDto> AddDirector(CreateDirectorDto createDirectorDto);
+        Task<DirectorDto> UpdateDirector(int id, UpdateDirectorDto updateDirectorDto);
         string DeleteDirector(int id);
         DirectorDto GetDirectorById(int id);
         List<DirectorDto> GetAllDirector();

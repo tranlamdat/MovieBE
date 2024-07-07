@@ -10,7 +10,6 @@ namespace Sever.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MovieMediaId { get; set; }
 
-        [StringLength(255)]
         public string Name { get; set; }
 
         public string Url { get; set; }

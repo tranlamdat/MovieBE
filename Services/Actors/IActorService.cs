@@ -4,8 +4,8 @@ namespace Sever.Services.Actors
 {
     public interface IActorService
     {
-        ActorDto AddActor(CreateActorDto createActorDto);
-        ActorDto UpdateActor(int id, UpdateActorDto updateActorDto);
+        Task<ActorDto> AddActor(CreateActorDto createActorDto);
+        Task<ActorDto> UpdateActor(int id, UpdateActorDto updateActorDto);
         string DeleteActor(int id);
         ActorDto GetActorById(int id);
         List<ActorDto> GetAllActor();

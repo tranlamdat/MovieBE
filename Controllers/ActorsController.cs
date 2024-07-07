@@ -60,7 +60,7 @@ namespace Sever.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] CreateActorDto createActorDto) // dung' de them du lieu
+        public async Task<IActionResult> Post([FromForm] CreateActorDto createActorDto) // dung' de them du lieu
         {
             if (!ModelState.IsValid)
             {
@@ -70,7 +70,7 @@ namespace Sever.Controllers
             ResponseDto response = new();
             try
             {
-                ActorDto actorDto = _actorService.AddActor(createActorDto);
+                ActorDto actorDto = await _actorService.AddActor(createActorDto);
                 return Ok(actorDto);
             }
             catch (Exception e)
@@ -81,7 +81,7 @@ namespace Sever.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] UpdateActorDto updateActorDto)
+        public async Task<IActionResult> Put(int id, [FromForm] UpdateActorDto updateActorDto)
         {
             if (!ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace Sever.Controllers
             ResponseDto response = new();
             try
             {
-                ActorDto actorDto = _actorService.UpdateActor(id, updateActorDto);
+                ActorDto actorDto = await _actorService.UpdateActor(id, updateActorDto);
                 return Ok(actorDto);
             }
             catch (NotFoundException e)

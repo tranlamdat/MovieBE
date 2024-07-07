@@ -9,13 +9,15 @@ namespace Sever.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ActorId { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
         public DateTime DoB { get; set; }
 
-        [Required]
         public string Nationality { get; set; }
+
+        public string? AvatarUrl { get; set; }
+
+        public string? PublicId { get; set; }
 
         public virtual ICollection<MovieActor>? MovieActors { get; set; }
     }

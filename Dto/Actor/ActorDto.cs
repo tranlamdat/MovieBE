@@ -9,5 +9,9 @@
         public DateTime DoB { get; set; }
 
         public string Nationality { get; set; }
+
+        public string? AvatarUrl { get; set; }
+
+        public string? PublicId { get; set; }
     }
 }

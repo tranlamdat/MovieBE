@@ -70,30 +70,30 @@ namespace Sever.Models
 
             // Seed Actor
             modelBuilder.Entity<Actor>().HasData(
-                new Actor { ActorId = 1, Name = "Robert Downey Jr.", DoB = new DateTime(1965, 04, 04), Nationality = "American" },
-                new Actor { ActorId = 2, Name = "Scarlett Johansson", DoB = new DateTime(1984, 11, 22), Nationality = "American" },
-                new Actor { ActorId = 3, Name = "Leonardo DiCaprio", DoB = new DateTime(1974, 11, 11), Nationality = "American" },
-                new Actor { ActorId = 4, Name = "Jennifer Lawrence", DoB = new DateTime(1990, 08, 15), Nationality = "American" },
-                new Actor { ActorId = 5, Name = "Denzel Washington", DoB = new DateTime(1954, 12, 28), Nationality = "American" },
-                new Actor { ActorId = 6, Name = "Natalie Portman", DoB = new DateTime(1981, 06, 09), Nationality = "Israeli-American" },
-                new Actor { ActorId = 7, Name = "Tom Hanks", DoB = new DateTime(1956, 07, 09), Nationality = "American" },
-                new Actor { ActorId = 8, Name = "Emma Watson", DoB = new DateTime(1990, 04, 15), Nationality = "British" },
-                new Actor { ActorId = 9, Name = "Brad Pitt", DoB = new DateTime(1963, 12, 18), Nationality = "American" },
-                new Actor { ActorId = 10, Name = "Gal Gadot", DoB = new DateTime(1985, 04, 30), Nationality = "Israeli" }
+                new Actor { ActorId = 1, Name = "Robert Downey Jr.", DoB = new DateTime(1965, 04, 04), Nationality = "American", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg", PublicId = "ACTOR/g4mdoefbqdrczrod7uwf" },
+                new Actor { ActorId = 2, Name = "Scarlett Johansson", DoB = new DateTime(1984, 11, 22), Nationality = "American", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg", PublicId = "ACTOR/g4mdoefbqdrczrod7uwf" },
+                new Actor { ActorId = 3, Name = "Leonardo DiCaprio", DoB = new DateTime(1974, 11, 11), Nationality = "American", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg", PublicId = "ACTOR/g4mdoefbqdrczrod7uwf" },
+                new Actor { ActorId = 4, Name = "Jennifer Lawrence", DoB = new DateTime(1990, 08, 15), Nationality = "American", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg", PublicId = "ACTOR/g4mdoefbqdrczrod7uwf" },
+                new Actor { ActorId = 5, Name = "Denzel Washington", DoB = new DateTime(1954, 12, 28), Nationality = "American", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg", PublicId = "ACTOR/g4mdoefbqdrczrod7uwf" },
+                new Actor { ActorId = 6, Name = "Natalie Portman", DoB = new DateTime(1981, 06, 09), Nationality = "Israeli-American", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg", PublicId = "ACTOR/g4mdoefbqdrczrod7uwf" },
+                new Actor { ActorId = 7, Name = "Tom Hanks", DoB = new DateTime(1956, 07, 09), Nationality = "American", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg", PublicId = "ACTOR/g4mdoefbqdrczrod7uwf" },
+                new Actor { ActorId = 8, Name = "Emma Watson", DoB = new DateTime(1990, 04, 15), Nationality = "British", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg", PublicId = "ACTOR/g4mdoefbqdrczrod7uwf" },
+                new Actor { ActorId = 9, Name = "Brad Pitt", DoB = new DateTime(1963, 12, 18), Nationality = "American", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg", PublicId = "ACTOR/g4mdoefbqdrczrod7uwf" },
+                new Actor { ActorId = 10, Name = "Gal Gadot", DoB = new DateTime(1985, 04, 30), Nationality = "Israeli", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg", PublicId = "ACTOR/g4mdoefbqdrczrod7uwf" }
             );
 
             // Seed Director
             modelBuilder.Entity<Director>().HasData(
-                new Director { DirectorId = 1, Name = "Steven Spielberg", DoB = new DateTime(1946, 12, 18), Nationality = "American" },
-                new Director { DirectorId = 2, Name = "Christopher Nolan", DoB = new DateTime(1970, 07, 30), Nationality = "British" },
-                new Director { DirectorId = 3, Name = "Martin Scorsese", DoB = new DateTime(1942, 11, 17), Nationality = "American" },
-                new Director { DirectorId = 4, Name = "Quentin Tarantino", DoB = new DateTime(1963, 03, 27), Nationality = "American" },
-                new Director { DirectorId = 5, Name = "James Cameron", DoB = new DateTime(1954, 08, 16), Nationality = "Canadian" },
-                new Director { DirectorId = 6, Name = "Kathryn Bigelow", DoB = new DateTime(1951, 11, 27), Nationality = "American" },
-                new Director { DirectorId = 7, Name = "Ridley Scott", DoB = new DateTime(1937, 11, 30), Nationality = "British" },
-                new Director { DirectorId = 8, Name = "Peter Jackson", DoB = new DateTime(1961, 10, 31), Nationality = "New Zealander" },
-                new Director { DirectorId = 9, Name = "Guillermo del Toro", DoB = new DateTime(1964, 10, 09), Nationality = "Mexican" },
-                new Director { DirectorId = 10, Name = "Greta Gerwig", DoB = new DateTime(1983, 08, 04), Nationality = "American" }
+                new Director { DirectorId = 1, Name = "Steven Spielberg", DoB = new DateTime(1946, 12, 18), Nationality = "American", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp", PublicId = "DIRECTOR/os4brhm9sriu8nw09apr" },
+                new Director { DirectorId = 2, Name = "Christopher Nolan", DoB = new DateTime(1970, 07, 30), Nationality = "British", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp", PublicId = "DIRECTOR/os4brhm9sriu8nw09apr" },
+                new Director { DirectorId = 3, Name = "Martin Scorsese", DoB = new DateTime(1942, 11, 17), Nationality = "American", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp", PublicId = "DIRECTOR/os4brhm9sriu8nw09apr" },
+                new Director { DirectorId = 4, Name = "Quentin Tarantino", DoB = new DateTime(1963, 03, 27), Nationality = "American", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp", PublicId = "DIRECTOR/os4brhm9sriu8nw09apr" },
+                new Director { DirectorId = 5, Name = "James Cameron", DoB = new DateTime(1954, 08, 16), Nationality = "Canadian", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp", PublicId = "DIRECTOR/os4brhm9sriu8nw09apr" },
+                new Director { DirectorId = 6, Name = "Kathryn Bigelow", DoB = new DateTime(1951, 11, 27), Nationality = "American", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp", PublicId = "DIRECTOR/os4brhm9sriu8nw09apr" },
+                new Director { DirectorId = 7, Name = "Ridley Scott", DoB = new DateTime(1937, 11, 30), Nationality = "British", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp", PublicId = "DIRECTOR/os4brhm9sriu8nw09apr" },
+                new Director { DirectorId = 8, Name = "Peter Jackson", DoB = new DateTime(1961, 10, 31), Nationality = "New Zealander", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp", PublicId = "DIRECTOR/os4brhm9sriu8nw09apr" },
+                new Director { DirectorId = 9, Name = "Guillermo del Toro", DoB = new DateTime(1964, 10, 09), Nationality = "Mexican", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp", PublicId = "DIRECTOR/os4brhm9sriu8nw09apr" },
+                new Director { DirectorId = 10, Name = "Greta Gerwig", DoB = new DateTime(1983, 08, 04), Nationality = "American", AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp", PublicId = "DIRECTOR/os4brhm9sriu8nw09apr" }
             );
 
             // Seed Genre
