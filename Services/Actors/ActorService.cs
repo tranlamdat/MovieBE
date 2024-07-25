@@ -63,6 +63,12 @@ namespace Sever.Services.Actors
             return _mapper.Map<List<ActorDto>>(actors);
         }
 
+        public List<ActorDto> SearchActor(string actorName)
+        {
+            List<Actor> actors = _actorRepository.SearchActor(actorName);
+            return _mapper.Map<List<ActorDto>>(actors);
+        }
+
         public async Task<ActorDto> UpdateActor(int id, UpdateActorDto updateActorDto)
         {
             Actor actor = _actorRepository.GetActorById(id) ?? throw new NotFoundException("Actor does not exists");

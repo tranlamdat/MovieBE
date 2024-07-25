@@ -9,5 +9,6 @@ namespace Sever.Services.Actors
         string DeleteActor(int id);
         ActorDto GetActorById(int id);
         List<ActorDto> GetAllActor();
+        List<ActorDto> SearchActor(string actorName);
     }
 }

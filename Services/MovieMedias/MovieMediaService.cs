@@ -39,7 +39,7 @@ namespace Sever.Services.MovieMedias
 
             MovieMedia movieMedia = new()
             {
-                Name = result.OriginalFilename,
+                Name = result.OriginalFilename ?? result.DisplayName,
                 Url = result.SecureUri.AbsoluteUri,
                 PublicId = result.PublicId,
                 Type = createMovieMediaDto.Type,

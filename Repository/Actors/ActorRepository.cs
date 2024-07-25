@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sever.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Sever.Repository.Actors
 {
@@ -63,6 +64,20 @@ namespace Sever.Repository.Actors
             catch (Exception)
             {
                 throw new Exception("Error getting all actor");
+            }
+        }
+
+        public List<Actor> SearchActor(string actorName)
+        {
+            try
+            {
+                return _context.Actors
+                    .Where(p => p.Name.ToLower().Contains(actorName.ToLower()))
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error searching actor");
             }
         }
 

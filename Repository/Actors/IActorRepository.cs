@@ -9,5 +9,6 @@ namespace Sever.Repository.Actors
         void UpdateActor(Actor actor);
         void DeleteActor(Actor actor);
         List<Actor> GetAllActor();
+        List<Actor> SearchActor(string actorName);
     }
 }

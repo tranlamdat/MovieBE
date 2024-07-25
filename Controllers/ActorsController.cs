@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Sever.Dto;
 using Sever.Dto.Actor;
 using Sever.Exceptions;
@@ -51,6 +52,22 @@ namespace Sever.Controllers
             {
                 response.Message = e.Message;
                 return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+        }
+
+        [HttpGet("search")]
+        public IActionResult Search(string name)
+        {
+            ResponseDto response = new();
+            try
+            {
+                List<ActorDto> actorDtos = _actorService.SearchActor(name);
+                return Ok(actorDtos);
             }
             catch (Exception e)
             {
