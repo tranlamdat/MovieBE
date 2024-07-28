@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sever.Constraints;
+using Sever.Dto.MovieActor;
 using Sever.Dto.MovieMedia;
 using Sever.Exceptions;
 using Sever.Models;
@@ -25,6 +26,13 @@ namespace Sever.Services.MovieMedias
 
         public async Task<MovieMediaDto> AddMovieMedia(CreateMovieMediaDto createMovieMediaDto)
         {
+            MovieMedia movieMedia = await this.GenerateMovieMedia(createMovieMediaDto);
+            _movieMediaRepository.CreateMovieMedia(movieMedia);
+            return _mapper.Map<MovieMediaDto>(movieMedia);
+        }
+
+        public async Task<MovieMedia> GenerateMovieMedia(CreateMovieMediaDto createMovieMediaDto)
+        {
             dynamic result;
             if (createMovieMediaDto.Type == EFileType.VIDEO)
             {
@@ -46,9 +54,23 @@ namespace Sever.Services.MovieMedias
                 MovieId = createMovieMediaDto.MovieId,
             };
 
-            _movieMediaRepository.CreateMovieMedia(movieMedia);
+            return movieMedia;
+        }
 
-            return _mapper.Map<MovieMediaDto>(movieMedia);
+        public async Task<MovieMediaDto> UpdateMovieMedia(int id, CreateMovieMediaDto createMovieMediaDto)
+        {
+            MovieMedia movieMedia = _movieMediaRepository.GetMovieMediaById(id);
+
+            if (movieMedia != null)
+            {
+                var result = await _clodinaryService.DeleteMediaAsync(movieMedia.PublicId);
+                if (result.Error != null) throw new InvalidException(result.Error.Message);
+            }
+            
+            MovieMedia newMovieMedia = await this.GenerateMovieMedia(createMovieMediaDto);
+            newMovieMedia.MovieMediaId = id;
+            _movieMediaRepository.UpdateMovieMedia(newMovieMedia);
+            return _mapper.Map<MovieMediaDto>(newMovieMedia);
         }
 
         public async Task<string> DeleteMovieMedia(int id)
