@@ -10,5 +10,8 @@ namespace Sever.Services.Movies
         string DeleteMovie(int id);
         MovieDto GetMovieById(int id);
         List<MovieDto> GetAllMovie();
+        List<MovieDto> OpenThisWeek();
+        List<MovieDto> ComingSoon();
+        List<MovieDto> RelatedMovie(int genreId);
     }
 }

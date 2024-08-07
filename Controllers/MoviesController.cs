@@ -1,11 +1,5 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Sever.Dto.Actor;
+﻿using Microsoft.AspNetCore.Mvc;
 using Sever.Dto;
-using Sever.Dto.MovieMedia;
-using Sever.Models;
-using Sever.Services.Actors;
-using Sever.Services.Cloudinaries;
 using Sever.Services.Movies;
 using Sever.Dto.Movie;
 using Sever.Exceptions;
@@ -28,7 +22,7 @@ namespace Sever.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()//lay tat ca
+        public IActionResult Get() //lay tat ca
         {
             ResponseDto response = new();
             try
@@ -43,6 +37,58 @@ namespace Sever.Controllers
             }
         }
 
+        [AllowAnonymous]
+        [HttpGet("open-this-week")]
+        public IActionResult OpenThisWeek()
+        {
+            ResponseDto response = new();
+            try
+            {
+                List<MovieDto> movieDtos = _movieService.OpenThisWeek();
+                return Ok(movieDtos);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpGet("coming-soon")]
+        public IActionResult ComingSoon()
+        {
+            ResponseDto response = new();
+            try
+            {
+                List<MovieDto> movieDtos = _movieService.ComingSoon();
+                return Ok(movieDtos);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpGet("related/{genreId}")]
+        public IActionResult RelatedMovie(int genreId)
+        {
+            ResponseDto response = new();
+            try
+            {
+                List<MovieDto> movieDtos = _movieService.RelatedMovie(genreId);
+                return Ok(movieDtos);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+        }
+
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public IActionResult Get(int id)// lay theo id
         {

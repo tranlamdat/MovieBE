@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Sever.Helpers;
 using Sever.Models;
 
 namespace Sever.Repository.Movies
@@ -47,6 +48,68 @@ namespace Sever.Repository.Movies
                     .Include(m => m.Director)
                     .Include(m => m.MovieActors)
                     .Include(m => m.MovieMedias)
+                    .AsNoTracking()
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error getting all movies");
+            }
+        }
+
+        public List<Movie> GetMoviesByWeek()
+        {
+            try
+            {
+                var startOfWeek = DateTime.Now.StartOfWeek(DayOfWeek.Monday);
+                var endOfWeek = DateTime.Now.EndOfWeek(DayOfWeek.Monday);
+
+                return _context.Movies
+                    .Include(m => m.Genre)
+                    .Include(m => m.Director)
+                    .Include(m => m.MovieActors)
+                    .Include(m => m.MovieMedias)
+                    .Where(m => m.ReleaseDate >= startOfWeek && m.ReleaseDate <= endOfWeek)
+                    .AsNoTracking()
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error getting all movies");
+            }
+        }
+
+        public List<Movie> GetMoviesComingSoon()
+        {
+            try
+            {
+                var today = DateTime.Now.Date;
+
+                return _context.Movies
+                    .Include(m => m.Genre)
+                    .Include(m => m.Director)
+                    .Include(m => m.MovieActors)
+                    .Include(m => m.MovieMedias)
+                    .Where(m => m.ReleaseDate >= today)
+                    .AsNoTracking()
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error getting all movies");
+            }
+        }
+
+        public List<Movie> GetMoviesRelatedByGenre(int genreId)
+        {
+            try
+            {
+                return _context.Movies
+                    .Include(m => m.Genre)
+                    .Include(m => m.Director)
+                    .Include(m => m.MovieActors)
+                    .Include(m => m.MovieMedias)
+                    .Where(m => m.GenreId == genreId)
                     .AsNoTracking()
                     .ToList();
             }

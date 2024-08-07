@@ -53,6 +53,24 @@ namespace Sever.Services.Movies
             return _mapper.Map<List<MovieDto>>(movies);
         }
 
+        public List<MovieDto> OpenThisWeek()
+        {
+            List<Movie> movies = _movieRepository.GetMoviesByWeek();
+            return _mapper.Map<List<MovieDto>>(movies);
+        }
+
+        public List<MovieDto> ComingSoon()
+        {
+            List<Movie> movies = _movieRepository.GetMoviesComingSoon();
+            return _mapper.Map<List<MovieDto>>(movies);
+        }
+
+        public List<MovieDto> RelatedMovie(int genreId)
+        {
+            List<Movie> movies = _movieRepository.GetMoviesRelatedByGenre(genreId);
+            return _mapper.Map<List<MovieDto>>(movies);
+        }
+
         public MovieDto GetMovieById(int id)
         {
             Movie movie = _movieRepository.GetMovieById(id) ?? throw new NotFoundException("Movie does not exists"); ;

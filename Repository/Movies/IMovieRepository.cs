@@ -9,5 +9,8 @@ namespace Sever.Repository.Movies
         void UpdateMovie(Movie movie);
         void DeleteMovie(Movie movie);
         List<Movie> GetAllMovie();
+        List<Movie> GetMoviesByWeek();
+        List<Movie> GetMoviesComingSoon();
+        List<Movie> GetMoviesRelatedByGenre(int genreId);
     }
 }
