@@ -1,72 +1,101 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Sever.Dto.User;
+using Sever.Dto;
+using Sever.Exceptions;
 using Sever.Models;
+using Sever.Dto.WatchList;
+using Sever.Services.WatchLists;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Sever.Controllers
 {
-    [Route("api/[controller]")]
+    // [Authorize(Roles = "Member")]
+    [Route("api/watch-lists")]
     [ApiController]
     public class WatchListsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        public WatchListsController(ApplicationDbContext context)
+        private readonly IWatchListService _watchListService;
+
+        public WatchListsController(IWatchListService watchListService)
         {
-            _context = context;
-        }
-        // GET: api/<WatchListController>
-        [HttpGet]
-        public ActionResult<IEnumerable<WatchList>> Get()//get all
-        {
-            return _context.WatchLists.ToList();
+            _watchListService = watchListService;
         }
 
-        // GET api/<WatchListController>/5
-        [HttpGet("{id}")]
-        public ActionResult<WatchList> Get(int id)// get by id
+        [HttpGet("{userId}/user")]
+        public IActionResult Get(int userId)// get by id
         {
-            return _context.WatchLists.Find(id);
+            ResponseDto response = new();
+            try
+            {
+                List<WatchListDto> watchListDto = _watchListService.GetAllWatchListByUserId(userId);
+                return Ok(watchListDto);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
         // POST api/<WatchListController>
         [HttpPost]
-        public IActionResult Post([FromBody] WatchList obj)// use to add data
+        public IActionResult Post([FromBody] CreateWatchListDto createWatchListDto)// use to add data
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.WatchLists.Add(obj);
-
-
-                _context.SaveChanges();
-                return NoContent();
+                return BadRequest(ModelState);
             }
-            return BadRequest();
-        }
 
-        // PUT api/<WatchListController>/5
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] WatchList obj)
-        {
-            WatchList watchList = _context.WatchLists.Find(id);//get obj by id
-            if (watchList == null) { return BadRequest(); }
-            if (ModelState.IsValid)
+            ResponseDto response = new();
+            try
             {
-                _context.WatchLists.Update(obj);
-                _context.SaveChanges();
-                return NoContent();
+                WatchListDto watchListDto = _watchListService.AddWatchList(createWatchListDto);
+                return Ok(watchListDto);
             }
-            return BadRequest();
+            catch (ConflictException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status409Conflict, response);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
         // DELETE api/<WatchListController>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            WatchList watchList = _context.WatchLists.Find(id);
-            if (watchList == null) { return BadRequest(); }
-            _context.WatchLists.Remove(watchList);
-            _context.SaveChanges();
-            return NoContent();
+            ResponseDto response = new();
+            try
+            {
+                response.Message = _watchListService.DeleteWatchList(id);
+                return Ok(response);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
     }
 }

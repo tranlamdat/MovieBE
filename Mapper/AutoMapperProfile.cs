@@ -9,6 +9,7 @@ using Sever.Dto.Genre;
 using Sever.Dto.Director;
 using Sever.Dto.Movie;
 using Sever.Dto.MovieActor;
+using Sever.Dto.WatchList;
 
 namespace Sever.Mapper
 {
@@ -17,9 +18,7 @@ namespace Sever.Mapper
         public AutoMapperProfile()
         {
             CreateMap<RegisterDto, User>();
-
-            /*CreateMap<FileDetails, FileDetailDto>();
-            CreateMap<ImageDetails, ImageDetailDto>();*/
+            
             CreateMap<Role, RoleDto>();
             CreateMap<User, UserDto>();
 
@@ -44,6 +43,9 @@ namespace Sever.Mapper
             CreateMap<MovieActor, MovieActorDto>();
 
             CreateMap<MovieMedia, MovieMediaDto>();
+
+            CreateMap<CreateWatchListDto, WatchList>();
+            CreateMap<WatchList, WatchListDto>();
         }
     }
 }

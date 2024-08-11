@@ -23,6 +23,8 @@ using Sever.Repository.MovieActors;
 using Sever.Services.MovieMedias;
 using Sever.Repository.MovieMedias;
 using System.Text.Json.Serialization;
+using Sever.Services.WatchLists;
+using Sever.Repository.WatchLists;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +52,7 @@ builder.Services.AddScoped<IDirectorService, DirectorService>();
 builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<IMovieActorService, MovieActorService>();
 builder.Services.AddScoped<IMovieMediaService, MovieMediaService>();
+builder.Services.AddScoped<IWatchListService, WatchListService>();
 
 // Add dependency for repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -60,6 +63,7 @@ builder.Services.AddScoped<IDirectorRepository, DirectorRepository>();
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 builder.Services.AddScoped<IMovieActorRepository, MovieActorRepository>();
 builder.Services.AddScoped<IMovieMediaRepository, MovieMediaRepository>();
+builder.Services.AddScoped<IWatchListRepository, WatchListRepository>();
 
 // Add services to the container.
 builder.Services.AddCors();
