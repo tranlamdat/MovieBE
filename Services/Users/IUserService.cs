@@ -6,8 +6,9 @@ namespace Sever.Services.Users
     {
         UserDto CreateUser(CreateUserDto userDto);
         UserDto GetUserById(int id);
-        UserDto UpdateUser(int id, UpdateUserDto updateUserDto);
+        Task<UserDto> UpdateUser(int id, UpdateUserDto updateUserDto);
         string DeleteUser(int id);
         List<UserDto> GetAllUser();
+        string ChangePassword(int userId, ChangePasswordDto changePasswordDto);
     }
 }

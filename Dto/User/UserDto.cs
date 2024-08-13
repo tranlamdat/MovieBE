@@ -11,6 +11,8 @@ namespace Sever.Dto.User
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public bool? Gender { get; set; }
+        public string? Telephone { get; set; }
         public string? ProfilePicture { get; set; }
         public RoleDto? Role { get; set; }
     }

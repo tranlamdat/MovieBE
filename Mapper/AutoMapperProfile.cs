@@ -21,6 +21,8 @@ namespace Sever.Mapper
             
             CreateMap<Role, RoleDto>();
             CreateMap<User, UserDto>();
+            CreateMap<CreateUserDto, User>();
+            CreateMap<UpdateUserDto, User>();
 
             CreateMap<CreateActorDto, Actor>();
             CreateMap<UpdateActorDto, Actor>();

@@ -2,7 +2,7 @@
 
 namespace Sever.Dto.Director
 {
-    public class CreateDirectorDto
+    public class CreateDirectorDto : BaseDto
     {
         [Required]
         public string Name { get; set; }

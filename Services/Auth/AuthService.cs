@@ -48,6 +48,9 @@ namespace Sever.Services.Auth
             Role role = _roleRepository.GetRoleByName(ERole.Member.ToString()) ?? throw new NotFoundException("Role not found");
             user.RoleId = role.RoleId;
 
+            user.DateCreated = DateTime.UtcNow;
+            user.DateUpdated = DateTime.UtcNow;
+
             // Create user
             _userRepository.CreateUser(user);
 
@@ -90,11 +93,10 @@ namespace Sever.Services.Auth
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             string accessToken = tokenHandler.WriteToken(token);
-            string role = user.Role.Name;
 
             UserDto userDto = _mapper.Map<UserDto>(user);
 
-            return new AuthResponse { AccessToken = accessToken, Role = role, User = userDto };
+            return new AuthResponse { AccessToken = accessToken, User = userDto };
         }
     }
 }

@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Sever.Dto.Actor;
 using Sever.Dto;
-using Sever.Models;
-using Sever.Services.Actors;
 using Sever.Services.Users;
 using Sever.Dto.User;
 using Sever.Exceptions;
@@ -13,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Sever.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     [Route("api/users")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -26,7 +22,7 @@ namespace Sever.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()//lay tat ca
+        public IActionResult Get()
         {
             ResponseDto response = new();
             try
@@ -42,7 +38,7 @@ namespace Sever.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id)// lay theo id
+        public IActionResult Get(int id)
         {
             ResponseDto response = new();
             try
@@ -63,7 +59,7 @@ namespace Sever.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] CreateUserDto createUserDto)// dung' de them du lieu
+        public IActionResult Post([FromForm] CreateUserDto createUserDto)
         {
             if (!ModelState.IsValid)
             {
@@ -89,7 +85,7 @@ namespace Sever.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] UpdateUserDto updateUserDto)
+        public async Task<IActionResult> Put(int id, [FromForm] UpdateUserDto updateUserDto)
         {
             if (!ModelState.IsValid)
             {
@@ -99,7 +95,7 @@ namespace Sever.Controllers
             ResponseDto response = new();
             try
             {
-                UserDto userDto = _userService.UpdateUser(id, updateUserDto);
+                UserDto userDto = await _userService.UpdateUser(id, updateUserDto);
                 return Ok(userDto);
             }
             catch (NotFoundException e)
@@ -127,6 +123,32 @@ namespace Sever.Controllers
             {
                 response.Message = e.Message;
                 return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+        }
+
+        [HttpPut("{id}/change-password")]
+        public IActionResult ChangePassword(int id, [FromBody] ChangePasswordDto changePasswordDto)
+        {
+            ResponseDto response = new();
+            try
+            {
+                response.Message = _userService.ChangePassword(id, changePasswordDto);
+                return Ok(response);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (InvalidException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status400BadRequest, response);
             }
             catch (Exception e)
             {

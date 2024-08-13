@@ -25,6 +25,7 @@ using Sever.Repository.MovieMedias;
 using System.Text.Json.Serialization;
 using Sever.Services.WatchLists;
 using Sever.Repository.WatchLists;
+using Sever.Services.Users;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +46,7 @@ builder.Services.AddSwaggerGen();
 
 // Add dependency for services
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IActorService, ActorService>();
 builder.Services.AddScoped<IClodinaryService, CloudinaryService>();
 builder.Services.AddScoped<IGenreService, GenreService>();

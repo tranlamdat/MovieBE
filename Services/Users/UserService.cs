@@ -2,10 +2,12 @@
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Sever.Constraints;
 using Sever.Dto.User;
 using Sever.Exceptions;
 using Sever.Models;
 using Sever.Repository.Users;
+using Sever.Services.Cloudinaries;
 using System;
 
 namespace Sever.Services.Users
@@ -14,11 +16,13 @@ namespace Sever.Services.Users
     {
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
+        private readonly IClodinaryService _clodinaryService;
 
-        public UserService(IUserRepository userRepository, IMapper mapper)
+        public UserService(IUserRepository userRepository, IMapper mapper, IClodinaryService clodinaryService)
         {
             _mapper = mapper;
             _userRepository = userRepository;
+            _clodinaryService = clodinaryService;
         }
 
         public UserDto CreateUser(CreateUserDto userDto)
@@ -63,7 +67,7 @@ namespace Sever.Services.Users
             return _mapper.Map<UserDto>(user);
         }
 
-        public UserDto UpdateUser(int id, UpdateUserDto updateUserDto)
+        public async Task<UserDto> UpdateUser(int id, UpdateUserDto updateUserDto)
         {
             User user = _userRepository.GetUserById(id) ?? throw new NotFoundException("User not found");
             updateUserDto.UserId = id;
@@ -77,10 +81,34 @@ namespace Sever.Services.Users
                 updateUserDto.Password = user.Password;
             }
 
+            // Save profile picture
+            if (updateUserDto.NewProfilePicture != null)
+            {
+                var result = await _clodinaryService.UploadImageAsync(updateUserDto.NewProfilePicture, EFileType.PROFILE.ToString());
+                if (result.Error != null) throw new InvalidException(result.Error.Message);
+
+                updateUserDto.ProfilePicture = result.SecureUri.AbsoluteUri;
+            }
+
             user = _mapper.Map<User>(updateUserDto);
             _userRepository.UpdateUser(user);
 
             return _mapper.Map<UserDto>(user);
+        }
+
+        public string ChangePassword(int userId, ChangePasswordDto changePasswordDto)
+        {
+            User user = _userRepository.GetUserById(userId) ?? throw new NotFoundException("User not found");
+
+            if (!VerifyPassword(user.Password, changePasswordDto.CurrentPassword))
+            {
+                throw new InvalidException("Current password is incorrect");
+            }
+
+            user.Password = HashPassword(changePasswordDto.NewPassword);
+            _userRepository.UpdateUser(user);
+
+            return "Password changed successfully";
         }
 
         public bool VerifyPassword(string currentPassword, string oldPassword)
