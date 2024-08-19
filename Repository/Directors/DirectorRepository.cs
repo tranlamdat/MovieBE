@@ -43,6 +43,8 @@ namespace Sever.Repository.Directors
             try
             {
                 return _context.Directors
+                    .Include(d => d.Movies).ThenInclude(d => d.Genre)
+                    .Include(d => d.Movies).ThenInclude(d => d.MovieMedias)
                     .AsNoTracking()
                     .ToList();
             }

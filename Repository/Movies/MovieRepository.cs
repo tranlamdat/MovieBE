@@ -104,12 +104,14 @@ namespace Sever.Repository.Movies
         {
             try
             {
+                var today = DateTime.Now.Date;
+
                 return _context.Movies
                     .Include(m => m.Genre)
                     .Include(m => m.Director)
                     .Include(m => m.MovieActors)
                     .Include(m => m.MovieMedias)
-                    .Where(m => m.GenreId == genreId)
+                    .Where(m => m.GenreId == genreId && m.ReleaseDate < today)
                     .AsNoTracking()
                     .ToList();
             }

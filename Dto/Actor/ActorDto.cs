@@ -1,4 +1,6 @@
-﻿namespace Sever.Dto.Actor
+﻿using Sever.Dto.MovieActor;
+
+namespace Sever.Dto.Actor
 {
     public class ActorDto : BaseDto
     {
@@ -13,5 +15,7 @@
         public string? AvatarUrl { get; set; }
 
         public string? PublicId { get; set; }
+
+        public List<MovieActorDto> MovieActors { get; set; }
     }
 }

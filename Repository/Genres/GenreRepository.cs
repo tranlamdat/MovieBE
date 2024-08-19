@@ -43,6 +43,7 @@ namespace Sever.Repository.Genres
             try
             {
                 return _context.Genres
+                    .Include(g => g.Movies).ThenInclude(g => g.MovieMedias)
                     .AsNoTracking()
                     .ToList();
             }

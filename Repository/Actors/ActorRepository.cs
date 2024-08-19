@@ -58,6 +58,8 @@ namespace Sever.Repository.Actors
             try
             {
                 return _context.Actors
+                    .Include(a => a.MovieActors).ThenInclude(a => a.Movie.MovieMedias)
+                    .Include(a => a.MovieActors).ThenInclude(a => a.Movie.Genre)
                     .AsNoTracking()
                     .ToList();
             }
