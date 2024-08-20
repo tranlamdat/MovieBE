@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Sever.Constraints;
 using Sever.Helpers;
 using Sever.Models;
 
@@ -118,6 +119,37 @@ namespace Sever.Repository.Movies
             catch (Exception)
             {
                 throw new Exception("Error getting all movies");
+            }
+        }
+
+        public List<Movie> SearchMovie(string name, string type)
+        {
+            try
+            {
+                if (String.Equals(EMovieSearchType.name.ToString().ToLower(), type.ToLower()))
+                {
+                    return _context.Movies
+                       .Include(m => m.Genre)
+                       .Include(m => m.Director)
+                       .Include(m => m.MovieActors)
+                       .Include(m => m.MovieMedias)
+                       .Where(p => p.Title.ToLower().Contains(name.ToLower()))
+                       .ToList();
+                }
+                else
+                {
+                    return _context.Movies
+                       .Include(m => m.Genre)
+                       .Include(m => m.Director)
+                       .Include(m => m.MovieActors)
+                       .Include(m => m.MovieMedias)
+                       .Where(p => p.Genre.Name.ToLower().Contains(name.ToLower()))
+                       .ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error searching movie");
             }
         }
 

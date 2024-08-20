@@ -13,5 +13,6 @@ namespace Sever.Services.Movies
         List<MovieDto> OpenThisWeek();
         List<MovieDto> ComingSoon();
         List<MovieDto> RelatedMovie(int genreId);
+        List<MovieDto> SearchMovie(string name, string type);
     }
 }

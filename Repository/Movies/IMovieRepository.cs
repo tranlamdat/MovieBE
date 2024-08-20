@@ -12,5 +12,6 @@ namespace Sever.Repository.Movies
         List<Movie> GetMoviesByWeek();
         List<Movie> GetMoviesComingSoon();
         List<Movie> GetMoviesRelatedByGenre(int genreId);
+        List<Movie> SearchMovie(string name, string type);
     }
 }

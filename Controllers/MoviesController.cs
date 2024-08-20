@@ -4,6 +4,7 @@ using Sever.Services.Movies;
 using Sever.Dto.Movie;
 using Sever.Exceptions;
 using Microsoft.AspNetCore.Authorization;
+using Sever.Dto.Actor;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -102,6 +103,23 @@ namespace Sever.Controllers
             {
                 response.Message = e.Message;
                 return StatusCode(StatusCodes.Status404NotFound, response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpGet("search")]
+        public IActionResult Search(string name, string type)
+        {
+            ResponseDto response = new();
+            try
+            {
+                List<MovieDto> movieDtos = _movieService.SearchMovie(name, type);
+                return Ok(movieDtos);
             }
             catch (Exception e)
             {
