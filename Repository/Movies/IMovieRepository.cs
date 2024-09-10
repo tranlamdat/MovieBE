@@ -13,5 +13,8 @@ namespace Sever.Repository.Movies
         List<Movie> GetMoviesComingSoon();
         List<Movie> GetMoviesRelatedByGenre(int genreId);
         List<Movie> SearchMovie(string name, string type);
+        List<Movie> TopMostView(int top);
+        List<Movie> TopMovieLike(int top);
+
     }
 }

@@ -39,6 +39,16 @@ namespace Sever.Services.Movies
             return _mapper.Map<MovieDto>(movie);
         }
 
+        public string UpdateView(int id)
+        {
+            Movie movie = _movieRepository.GetMovieById(id) ?? throw new NotFoundException("Movie does not exists");
+
+            movie.NumberOfView += 1;
+            _movieRepository.UpdateMovie(movie);
+
+            return "Update view successfully";
+        }
+
         public string DeleteMovie(int id)
         {
             Movie movie = _movieRepository.GetMovieById(id) ?? throw new NotFoundException("Movie does not exists");
@@ -74,6 +84,18 @@ namespace Sever.Services.Movies
         public List<MovieDto> SearchMovie(string name, string type)
         {
             List<Movie> movies = _movieRepository.SearchMovie(name, type);
+            return _mapper.Map<List<MovieDto>>(movies);
+        }
+
+        public List<MovieDto> TopMostView(int top)
+        {
+            List<Movie> movies = _movieRepository.TopMostView(top);
+            return _mapper.Map<List<MovieDto>>(movies);
+        }
+
+        public List<MovieDto> TopMovieLike(int top)
+        {
+            List<Movie> movies = _movieRepository.TopMovieLike(top);
             return _mapper.Map<List<MovieDto>>(movies);
         }
 

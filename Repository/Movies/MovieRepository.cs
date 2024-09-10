@@ -183,5 +183,51 @@ namespace Sever.Repository.Movies
                 throw new Exception("Error updating movie");
             }
         }
+
+        public List<Movie> TopMostView(int top)
+        {
+            try
+            {
+                return _context.Movies
+                    .Include(m => m.Genre)
+                    .Include(m => m.Director)
+                    .Include(m => m.MovieActors)
+                    .Include(m => m.MovieMedias)
+                    .OrderByDescending(m => m.NumberOfView)
+                    .Take(top)
+                    .AsNoTracking()
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error getting all movies");
+            }
+        }
+
+        public List<Movie> TopMovieLike(int top)
+        {
+            try
+            {
+                var lstMovieId = _context.WatchLists
+                                .GroupBy(x => x.MovieId)
+                                .OrderByDescending(g => g.Count())
+                                .Take(top)
+                                .Select(x => x.Key)
+                                .ToList();
+
+                return _context.Movies
+                    .Include(m => m.Genre)
+                    .Include(m => m.Director)
+                    .Include(m => m.MovieActors)
+                    .Include(m => m.MovieMedias)
+                    .Where(m => lstMovieId.Contains(m.MovieId))
+                    .AsNoTracking()
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error getting all movies");
+            }
+        }
     }
 }

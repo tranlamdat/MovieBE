@@ -128,6 +128,55 @@ namespace Sever.Controllers
             }
         }
 
+        [HttpGet("top-most-view")]
+        public IActionResult TopMostView(int top)
+        {
+            ResponseDto response = new();
+            try
+            {
+                List<MovieDto> movieDtos = _movieService.TopMostView(top);
+                return Ok(movieDtos);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+        }
+
+        [HttpGet("top-movie-like")]
+        public IActionResult TopMovieLike(int top)
+        {
+            ResponseDto response = new();
+            try
+            {
+                List<MovieDto> movieDtos = _movieService.TopMovieLike(top);
+                return Ok(movieDtos);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPut("view/{id}")]
+        public IActionResult UpdateView(int id)
+        {
+            ResponseDto response = new();
+            try
+            {
+                response.Message = _movieService.UpdateView(id);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] CreateMovieDto createMovieDto)// dung' de them du lieu
         {
