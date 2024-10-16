@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sever.Models;
 
@@ -11,9 +12,10 @@ using Sever.Models;
 namespace Sever.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241010150902_addContactTable")]
+    partial class addContactTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,8 +64,8 @@ namespace Sever.Migrations
                         {
                             ActorId = 1,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(611),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(611),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2212),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2213),
                             DoB = new DateTime(1965, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Robert Downey Jr.",
                             Nationality = "American",
@@ -73,8 +75,8 @@ namespace Sever.Migrations
                         {
                             ActorId = 2,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(617),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(617),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2217),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2218),
                             DoB = new DateTime(1984, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Scarlett Johansson",
                             Nationality = "American",
@@ -84,8 +86,8 @@ namespace Sever.Migrations
                         {
                             ActorId = 3,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(619),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(619),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2219),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2220),
                             DoB = new DateTime(1974, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Leonardo DiCaprio",
                             Nationality = "American",
@@ -95,8 +97,8 @@ namespace Sever.Migrations
                         {
                             ActorId = 4,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(620),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(620),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2220),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2221),
                             DoB = new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Jennifer Lawrence",
                             Nationality = "American",
@@ -106,8 +108,8 @@ namespace Sever.Migrations
                         {
                             ActorId = 5,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(621),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(622),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2222),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2222),
                             DoB = new DateTime(1954, 12, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Denzel Washington",
                             Nationality = "American",
@@ -117,8 +119,8 @@ namespace Sever.Migrations
                         {
                             ActorId = 6,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(623),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(623),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2223),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2224),
                             DoB = new DateTime(1981, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Natalie Portman",
                             Nationality = "Israeli-American",
@@ -128,8 +130,8 @@ namespace Sever.Migrations
                         {
                             ActorId = 7,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(624),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(624),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2225),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2225),
                             DoB = new DateTime(1956, 7, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Tom Hanks",
                             Nationality = "American",
@@ -139,8 +141,8 @@ namespace Sever.Migrations
                         {
                             ActorId = 8,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(625),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(626),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2226),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2226),
                             DoB = new DateTime(1990, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Emma Watson",
                             Nationality = "British",
@@ -150,8 +152,8 @@ namespace Sever.Migrations
                         {
                             ActorId = 9,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(627),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(627),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2227),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2228),
                             DoB = new DateTime(1963, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Brad Pitt",
                             Nationality = "American",
@@ -161,8 +163,8 @@ namespace Sever.Migrations
                         {
                             ActorId = 10,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286489/ACTOR/g4mdoefbqdrczrod7uwf.jpg",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(628),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(629),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2229),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2229),
                             DoB = new DateTime(1985, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Gal Gadot",
                             Nationality = "Israeli",
@@ -177,12 +179,6 @@ namespace Sever.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactId"), 1L, 1);
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -245,8 +241,8 @@ namespace Sever.Migrations
                         {
                             DirectorId = 1,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(664),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(665),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2274),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2274),
                             DoB = new DateTime(1946, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Steven Spielberg",
                             Nationality = "American",
@@ -256,8 +252,8 @@ namespace Sever.Migrations
                         {
                             DirectorId = 2,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(667),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(667),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2276),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2276),
                             DoB = new DateTime(1970, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Christopher Nolan",
                             Nationality = "British",
@@ -267,8 +263,8 @@ namespace Sever.Migrations
                         {
                             DirectorId = 3,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(668),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(669),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2278),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2278),
                             DoB = new DateTime(1942, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Martin Scorsese",
                             Nationality = "American",
@@ -278,8 +274,8 @@ namespace Sever.Migrations
                         {
                             DirectorId = 4,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(670),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(670),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2279),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2280),
                             DoB = new DateTime(1963, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Quentin Tarantino",
                             Nationality = "American",
@@ -289,8 +285,8 @@ namespace Sever.Migrations
                         {
                             DirectorId = 5,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(674),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(674),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2281),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2281),
                             DoB = new DateTime(1954, 8, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "James Cameron",
                             Nationality = "Canadian",
@@ -300,8 +296,8 @@ namespace Sever.Migrations
                         {
                             DirectorId = 6,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(675),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(675),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2282),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2283),
                             DoB = new DateTime(1951, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Kathryn Bigelow",
                             Nationality = "American",
@@ -311,8 +307,8 @@ namespace Sever.Migrations
                         {
                             DirectorId = 7,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(678),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(679),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2284),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2284),
                             DoB = new DateTime(1937, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Ridley Scott",
                             Nationality = "British",
@@ -322,8 +318,8 @@ namespace Sever.Migrations
                         {
                             DirectorId = 8,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(679),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(680),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2287),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2288),
                             DoB = new DateTime(1961, 10, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Peter Jackson",
                             Nationality = "New Zealander",
@@ -333,8 +329,8 @@ namespace Sever.Migrations
                         {
                             DirectorId = 9,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(681),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(681),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2289),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2289),
                             DoB = new DateTime(1964, 10, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Guillermo del Toro",
                             Nationality = "Mexican",
@@ -344,8 +340,8 @@ namespace Sever.Migrations
                         {
                             DirectorId = 10,
                             AvatarUrl = "https://res.cloudinary.com/dl3zwdtki/image/upload/v1720286507/DIRECTOR/os4brhm9sriu8nw09apr.webp",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(683),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(684),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2290),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2291),
                             DoB = new DateTime(1983, 8, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Greta Gerwig",
                             Nationality = "American",
@@ -379,71 +375,71 @@ namespace Sever.Migrations
                         new
                         {
                             GenreId = 1,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(701),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(702),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2311),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2311),
                             Name = "Action"
                         },
                         new
                         {
                             GenreId = 2,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(703),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(703),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2312),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2313),
                             Name = "Comedy"
                         },
                         new
                         {
                             GenreId = 3,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(704),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(705),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2313),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2314),
                             Name = "Drama"
                         },
                         new
                         {
                             GenreId = 4,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(705),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(706),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2314),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2315),
                             Name = "Horror"
                         },
                         new
                         {
                             GenreId = 5,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(706),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(707),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2315),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2316),
                             Name = "Science-Fiction"
                         },
                         new
                         {
                             GenreId = 6,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(707),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(708),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2316),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2317),
                             Name = "Romance"
                         },
                         new
                         {
                             GenreId = 7,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(708),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(709),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2317),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2318),
                             Name = "Thriller"
                         },
                         new
                         {
                             GenreId = 8,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(709),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(710),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2319),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2319),
                             Name = "Fantasy"
                         },
                         new
                         {
                             GenreId = 9,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(710),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(711),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2320),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2320),
                             Name = "Animation"
                         },
                         new
                         {
                             GenreId = 10,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(711),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(712),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2321),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2321),
                             Name = "Documentary"
                         });
                 });
@@ -501,8 +497,8 @@ namespace Sever.Migrations
                         new
                         {
                             MovieId = 1,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(735),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(735),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2346),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2346),
                             Description = "Inception is a mind-bending thriller where dream invasion is possible. Dom Cobb, a skilled thief, extracts secrets from deep within the subconscious during dreams. Cobb is an international fugitive seeking redemption through one last job: to plant an idea instead of stealing it. Success could be the perfect crime.",
                             DirectorId = 2,
                             Duration = 148,
@@ -515,8 +511,8 @@ namespace Sever.Migrations
                         new
                         {
                             MovieId = 2,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(737),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(738),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2349),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2349),
                             Description = "Titanic is a love story that unfolds on the ill-fated ship. Seventeen-year-old Rose boards with her aristocratic family, feeling suffocated by societal constraints and an impending arranged marriage. She meets Jack, a third-class passenger, and they fall in love amid the ship's grandeur and tragedy.",
                             DirectorId = 5,
                             Duration = 195,
@@ -529,8 +525,8 @@ namespace Sever.Migrations
                         new
                         {
                             MovieId = 3,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(739),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(740),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2351),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2351),
                             Description = "Pulp Fiction intertwines the lives of Los Angeles criminals, including hitmen, a boxer, and a mob boss, in a series of interconnected stories blending violence and redemption.",
                             DirectorId = 4,
                             Duration = 154,
@@ -543,8 +539,8 @@ namespace Sever.Migrations
                         new
                         {
                             MovieId = 4,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(741),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(741),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2352),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2353),
                             Description = "The Dark Knight follows Batman as he confronts the Joker, a psychopathic criminal wreaking havoc on Gotham City. The conflict forces Batman to confront his own ideals and methods in combating crime.",
                             DirectorId = 2,
                             Duration = 152,
@@ -557,8 +553,8 @@ namespace Sever.Migrations
                         new
                         {
                             MovieId = 5,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(742),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(743),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2354),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2354),
                             Description = "Avatar follows Jake Sully, a paraplegic Marine, who becomes part of the Avatar Program on Pandora, where he integrates with the Na'vi to infiltrate the indigenous species for a corporate mission. However, his experiences lead him to question his allegiances and fight for Pandora's survival.",
                             DirectorId = 5,
                             Duration = 162,
@@ -571,8 +567,8 @@ namespace Sever.Migrations
                         new
                         {
                             MovieId = 6,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(744),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(744),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2355),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2356),
                             Description = "The Matrix centers on Neo, a computer hacker who discovers that reality is a simulated world created by sentient machines to subdue humanity. Neo joins a group of rebels to overthrow the machines and free humanity from their control.",
                             DirectorId = 7,
                             Duration = 136,
@@ -585,8 +581,8 @@ namespace Sever.Migrations
                         new
                         {
                             MovieId = 7,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(746),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(747),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2359),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2359),
                             Description = "La La Land tells the story of Mia, an aspiring actress, and Sebastian, a jazz musician, who meet and fall in love in Los Angeles while pursuing their dreams. Their relationship faces challenges as they navigate the competitive and demanding entertainment industry.",
                             DirectorId = 10,
                             Duration = 128,
@@ -599,8 +595,8 @@ namespace Sever.Migrations
                         new
                         {
                             MovieId = 8,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(748),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(748),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2360),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2361),
                             Description = "The Lord of the Rings: The Return of the King depicts the final battle for Middle-earth as Aragorn, Frodo, and their allies confront Sauron's forces in an epic conclusion to the trilogy.",
                             DirectorId = 8,
                             Duration = 201,
@@ -613,8 +609,8 @@ namespace Sever.Migrations
                         new
                         {
                             MovieId = 9,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(750),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(750),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2362),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2362),
                             Description = "Pan's Labyrinth follows Ofelia, a young girl in post-Civil War Spain, who discovers a mysterious labyrinth and encounters magical creatures. Amid her harsh reality, Ofelia navigates a world of fantasy to fulfill a daunting task.",
                             DirectorId = 9,
                             Duration = 118,
@@ -627,8 +623,8 @@ namespace Sever.Migrations
                         new
                         {
                             MovieId = 10,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(751),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(752),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2363),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2364),
                             Description = "Wonder Woman chronicles Diana, an Amazonian warrior princess, who leaves her home to fight alongside humans in World War I. As she discovers her powers and true destiny, she becomes a symbol of hope and inspiration.",
                             DirectorId = 9,
                             Duration = 141,
@@ -678,8 +674,8 @@ namespace Sever.Migrations
                             MovieActorId = 1,
                             ActorId = 1,
                             CharacterName = "Cobb",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(947),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(947),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2382),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2382),
                             MovieId = 1
                         },
                         new
@@ -687,8 +683,8 @@ namespace Sever.Migrations
                             MovieActorId = 2,
                             ActorId = 2,
                             CharacterName = "Ariadne",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(949),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(950),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2383),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2384),
                             MovieId = 1
                         },
                         new
@@ -696,8 +692,8 @@ namespace Sever.Migrations
                             MovieActorId = 3,
                             ActorId = 3,
                             CharacterName = "Arthur",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(951),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(951),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2385),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2385),
                             MovieId = 1
                         },
                         new
@@ -705,8 +701,8 @@ namespace Sever.Migrations
                             MovieActorId = 4,
                             ActorId = 3,
                             CharacterName = "Jack Dawson",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(952),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(952),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2386),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2386),
                             MovieId = 2
                         },
                         new
@@ -714,8 +710,8 @@ namespace Sever.Migrations
                             MovieActorId = 5,
                             ActorId = 4,
                             CharacterName = "Rose DeWitt Bukater",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(953),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(953),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2387),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2387),
                             MovieId = 2
                         },
                         new
@@ -723,8 +719,8 @@ namespace Sever.Migrations
                             MovieActorId = 6,
                             ActorId = 5,
                             CharacterName = "Cal Hockley",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(954),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(954),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2388),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2388),
                             MovieId = 2
                         },
                         new
@@ -732,8 +728,8 @@ namespace Sever.Migrations
                             MovieActorId = 7,
                             ActorId = 5,
                             CharacterName = "Vincent Vega",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(955),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(956),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2389),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2389),
                             MovieId = 3
                         },
                         new
@@ -741,8 +737,8 @@ namespace Sever.Migrations
                             MovieActorId = 8,
                             ActorId = 6,
                             CharacterName = "Mia Wallace",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(956),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(957),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2390),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2391),
                             MovieId = 3
                         },
                         new
@@ -750,8 +746,8 @@ namespace Sever.Migrations
                             MovieActorId = 9,
                             ActorId = 7,
                             CharacterName = "Jules Winnfield",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(957),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(958),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2391),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2392),
                             MovieId = 3
                         },
                         new
@@ -759,8 +755,8 @@ namespace Sever.Migrations
                             MovieActorId = 10,
                             ActorId = 1,
                             CharacterName = "Bruce Wayne/Batman",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(959),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(960),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2392),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2393),
                             MovieId = 4
                         },
                         new
@@ -768,8 +764,8 @@ namespace Sever.Migrations
                             MovieActorId = 11,
                             ActorId = 8,
                             CharacterName = "Joker",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(960),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(961),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2393),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2394),
                             MovieId = 4
                         },
                         new
@@ -777,8 +773,8 @@ namespace Sever.Migrations
                             MovieActorId = 12,
                             ActorId = 9,
                             CharacterName = "Harvey Dent",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(962),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(962),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2394),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2395),
                             MovieId = 4
                         },
                         new
@@ -786,8 +782,8 @@ namespace Sever.Migrations
                             MovieActorId = 13,
                             ActorId = 2,
                             CharacterName = "Jake Sully",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(963),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(963),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2396),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2396),
                             MovieId = 5
                         },
                         new
@@ -795,8 +791,8 @@ namespace Sever.Migrations
                             MovieActorId = 14,
                             ActorId = 10,
                             CharacterName = "Neytiri",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(964),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(964),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2397),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2397),
                             MovieId = 5
                         },
                         new
@@ -804,8 +800,8 @@ namespace Sever.Migrations
                             MovieActorId = 15,
                             ActorId = 3,
                             CharacterName = "Colonel Miles Quaritch",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(965),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(965),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2398),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2398),
                             MovieId = 5
                         },
                         new
@@ -813,8 +809,8 @@ namespace Sever.Migrations
                             MovieActorId = 16,
                             ActorId = 1,
                             CharacterName = "Neo",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(966),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(967),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2399),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2399),
                             MovieId = 6
                         },
                         new
@@ -822,8 +818,8 @@ namespace Sever.Migrations
                             MovieActorId = 17,
                             ActorId = 5,
                             CharacterName = "Morpheus",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(969),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(970),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2400),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2400),
                             MovieId = 6
                         },
                         new
@@ -831,8 +827,8 @@ namespace Sever.Migrations
                             MovieActorId = 18,
                             ActorId = 7,
                             CharacterName = "Trinity",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(970),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(971),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2401),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2402),
                             MovieId = 6
                         },
                         new
@@ -840,8 +836,8 @@ namespace Sever.Migrations
                             MovieActorId = 19,
                             ActorId = 6,
                             CharacterName = "Sebastian",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(971),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(972),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2404),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2404),
                             MovieId = 7
                         },
                         new
@@ -849,8 +845,8 @@ namespace Sever.Migrations
                             MovieActorId = 20,
                             ActorId = 7,
                             CharacterName = "Mia",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(973),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(973),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2405),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2405),
                             MovieId = 7
                         },
                         new
@@ -858,8 +854,8 @@ namespace Sever.Migrations
                             MovieActorId = 21,
                             ActorId = 8,
                             CharacterName = "Keith",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(974),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(974),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2504),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2505),
                             MovieId = 7
                         },
                         new
@@ -867,8 +863,8 @@ namespace Sever.Migrations
                             MovieActorId = 22,
                             ActorId = 8,
                             CharacterName = "Frodo Baggins",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(975),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(975),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2507),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2507),
                             MovieId = 8
                         },
                         new
@@ -876,8 +872,8 @@ namespace Sever.Migrations
                             MovieActorId = 23,
                             ActorId = 9,
                             CharacterName = "Aragorn",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(976),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(976),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2508),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2508),
                             MovieId = 8
                         },
                         new
@@ -885,8 +881,8 @@ namespace Sever.Migrations
                             MovieActorId = 24,
                             ActorId = 10,
                             CharacterName = "Gandalf",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(977),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(977),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2509),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2509),
                             MovieId = 8
                         },
                         new
@@ -894,8 +890,8 @@ namespace Sever.Migrations
                             MovieActorId = 25,
                             ActorId = 10,
                             CharacterName = "Ofelia",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(978),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(979),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2510),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2510),
                             MovieId = 9
                         },
                         new
@@ -903,8 +899,8 @@ namespace Sever.Migrations
                             MovieActorId = 26,
                             ActorId = 6,
                             CharacterName = "Carmen",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(979),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(980),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2511),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2511),
                             MovieId = 9
                         },
                         new
@@ -912,8 +908,8 @@ namespace Sever.Migrations
                             MovieActorId = 27,
                             ActorId = 7,
                             CharacterName = "Captain Vidal",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(980),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(981),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2512),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2513),
                             MovieId = 9
                         },
                         new
@@ -921,8 +917,8 @@ namespace Sever.Migrations
                             MovieActorId = 28,
                             ActorId = 2,
                             CharacterName = "Diana Prince/Wonder Woman",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(982),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(982),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2513),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2514),
                             MovieId = 10
                         },
                         new
@@ -930,8 +926,8 @@ namespace Sever.Migrations
                             MovieActorId = 29,
                             ActorId = 4,
                             CharacterName = "Steve Trevor",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(983),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(983),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2514),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2515),
                             MovieId = 10
                         },
                         new
@@ -939,8 +935,8 @@ namespace Sever.Migrations
                             MovieActorId = 30,
                             ActorId = 3,
                             CharacterName = "Antiope",
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(984),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(984),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2515),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2516),
                             MovieId = 10
                         });
                 });
@@ -1426,12 +1422,12 @@ namespace Sever.Migrations
                         new
                         {
                             UserId = 1,
-                            DateCreated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(525),
-                            DateUpdated = new DateTime(2024, 10, 10, 22, 33, 32, 439, DateTimeKind.Local).AddTicks(541),
+                            DateCreated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2083),
+                            DateUpdated = new DateTime(2024, 10, 10, 22, 9, 1, 230, DateTimeKind.Local).AddTicks(2098),
                             Email = "admin@gmail.com",
                             FirstName = "Admin",
                             LastName = "First",
-                            Password = "AQAAAAEAACcQAAAAEI/AfDOYzZKYXt46Wj+8JLgCmK9IQ5YliPl/P6eYTS88nD5AykUBR2kE1M0n92PbqA==",
+                            Password = "AQAAAAEAACcQAAAAEFkTCiQcsfaKMd6vgwwGvpTA8LNlYRvD7xjayXwenOzUW9EhsvKmavS3x6gt9xhK3g==",
                             RoleId = 1
                         });
                 });

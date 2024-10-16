@@ -26,6 +26,8 @@ using System.Text.Json.Serialization;
 using Sever.Services.WatchLists;
 using Sever.Repository.WatchLists;
 using Sever.Services.Users;
+using Sever.Services.Contacts;
+using Sever.Repository.Contacts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,6 +57,7 @@ builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<IMovieActorService, MovieActorService>();
 builder.Services.AddScoped<IMovieMediaService, MovieMediaService>();
 builder.Services.AddScoped<IWatchListService, WatchListService>();
+builder.Services.AddScoped<IContactService, ContactService>();
 
 // Add dependency for repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -66,6 +69,7 @@ builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 builder.Services.AddScoped<IMovieActorRepository, MovieActorRepository>();
 builder.Services.AddScoped<IMovieMediaRepository, MovieMediaRepository>();
 builder.Services.AddScoped<IWatchListRepository, WatchListRepository>();
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
 // Add services to the container.
 builder.Services.AddCors();

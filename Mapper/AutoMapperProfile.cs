@@ -10,6 +10,7 @@ using Sever.Dto.Director;
 using Sever.Dto.Movie;
 using Sever.Dto.MovieActor;
 using Sever.Dto.WatchList;
+using Sever.Dto.Contact;
 
 namespace Sever.Mapper
 {
@@ -39,6 +40,10 @@ namespace Sever.Mapper
             CreateMap<CreateMovieDto, Movie>();
             CreateMap<UpdateMovieDto, Movie>();
             CreateMap<Movie, MovieDto>();
+
+            CreateMap<CreateContactDto, Contact>();
+            /*CreateMap<UpdateActorDto, Actor>();*/
+            CreateMap<Contact, ContactDto>();
 
             CreateMap<CreateMovieActorDto, MovieActor>();
             CreateMap<UpdateMovieActorDto, MovieActor>();
