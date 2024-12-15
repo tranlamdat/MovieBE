@@ -1,4 +1,5 @@
-﻿using Sever.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Sever.Models;
 
 namespace Sever.Repository.Contacts
 {
@@ -21,6 +22,47 @@ namespace Sever.Repository.Contacts
             catch (Exception)
             {
                 throw new Exception("Error creating contact");
+            }
+        }
+
+        public void DeleteContact(Contact contact)
+        {
+            try
+            {
+                _context.Contacts.Remove(contact);
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error deleting contact");
+            }
+        }
+
+        public List<Contact> GetAll()
+        {
+            try
+            {
+                return _context.Contacts
+                    .AsNoTracking()
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error getting all conact");
+            }
+        }
+
+        public Contact GetContactById(int id)
+        {
+            try
+            {
+                return _context.Contacts
+                    .AsNoTracking()
+                    .FirstOrDefault(u => u.ContactId == id);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error getting contact");
             }
         }
     }

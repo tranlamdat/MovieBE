@@ -6,6 +6,7 @@ using Sever.Dto;
 using Sever.Dto.Contact;
 using Sever.Services.Actors;
 using Sever.Services.Contacts;
+using Sever.Exceptions;
 
 namespace Sever.Controllers
 {
@@ -19,6 +20,22 @@ namespace Sever.Controllers
         public ContactsController(IContactService contactService)
         {
             _contactService = contactService;
+        }
+
+        [HttpGet]
+        public IActionResult Get() //lay tat ca
+        {
+            ResponseDto response = new();
+            try
+            {
+                List<ContactDto> contactDtos = _contactService.GetAllContact();
+                return Ok(contactDtos);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
         [AllowAnonymous]
@@ -35,6 +52,27 @@ namespace Sever.Controllers
             {
                 ContactDto contactDto = _contactService.AddContact(createContactDto);
                 return Ok(contactDto);
+            }
+            catch (Exception e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            ResponseDto response = new();
+            try
+            {
+                response.Message = _contactService.DeleteContact(id);
+                return Ok(response);
+            }
+            catch (NotFoundException e)
+            {
+                response.Message = e.Message;
+                return StatusCode(StatusCodes.Status404NotFound, response);
             }
             catch (Exception e)
             {
